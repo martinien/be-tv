@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var bell = require('./routes/bell');
-var remote = require('./routes/remote');
+var cmd = require('./routes/cmd');
 var alarm = require('./routes/alarm');
 
 var app = express();
@@ -26,8 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/bell', bell);
-app.use('/remote', remote);
 app.use('/alarm', alarm);
+app.use('/cmd', cmd);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

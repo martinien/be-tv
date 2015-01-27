@@ -18,6 +18,7 @@ io.sockets.on('connection', function (socket) {
   });
 
   socket.on('fermeturePorte', function(){
+
     closeDoor();
   });
 
@@ -27,9 +28,10 @@ function openDoor() {
     var xmlhttp=new XMLHttpRequest();
     xmlhttp.onreadystatechange=function()
     {
-        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+      console.log(xmlhttp.readyState, xmlhttp.status);
+        if (xmlhttp.readyState==4 && xmlhttp.status==503)
         {
-            setTimeout(closeDoor(), 4000);
+            setTimeout(closeDoor, 4000);
         }
     }
     xmlhttp.open("GET","http://10.134.15.120:8086/fhem?cmd.Switch=set%20Switch%20on&room=all",true);
@@ -38,6 +40,7 @@ function openDoor() {
 
 function closeDoor() {
     var xmlhttp=new XMLHttpRequest();
+    console.log('fermeture')
     xmlhttp.onreadystatechange=function()
     {
         if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -45,6 +48,6 @@ function closeDoor() {
             //porte fermée
         }
     }
-    xmlhttp.open("GET","http://10.134.15.120:8086/fhem?cmd.Switch=set%20Switch%20on&room=all",true);
+    xmlhttp.open("GET","http://10.134.15.120:8086/fhem?cmd.Switch=set%20Switch%20off&room=all",true);
     xmlhttp.send();
 }

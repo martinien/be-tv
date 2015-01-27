@@ -116,8 +116,17 @@ $( document ).ready(function() {
         triggerBell();
     });
 
-    socket.on('remote', function (data){
+    socket.on('cmd', function (data){
         //data = id de la commande
+        if(data == 16) {
+            vlc.playlist.playItem(1);
+        }
+        if(data == 2064) {
+            vlc.playlist.playItem(2);
+        }
+        if(data == 1040) {
+            vlc.playlist.playItem(3);
+        }
     });
 
     socket.on('alarm', function (data){
@@ -170,7 +179,7 @@ $("#alarm").click(function(e){
 
     function validateChoice(){
         triggerBell();
-        alert(getActiveButton() === accept ? "Ouverture de la porte" : "Porte fermée");
+       getActiveButton() === accept ? socket.emit("ouverturePorte") : alert("Porte fermée");
     }
 
 
