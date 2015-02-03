@@ -6,8 +6,7 @@ html, body {
 
 body {
   position:relative;
-  //width: 120%;
-  //height:  120%;
+  overflow:hidden;
 }
 
 .notification {
