@@ -14,11 +14,7 @@ $( document ).ready(function() {
     refuse = $('#refuse'),
     vlc = document.getElementById("vlc");
 
-    /*player = wjs("#player"),
-    video = player.videoelem;*/
-
-
-
+    
 
     $( "body" ).keydown(function( event ) {
         console.log("aaa");
@@ -41,44 +37,6 @@ $( document ).ready(function() {
 
 
 
-
-
-
-
-
-        //video.toggleFullscreen();
-/*
-        playlist = [];
-
-        playlist.push({
-          url: "dvb-t://frequency=594000000:bandwidth=0",
-          title: "Grand Lille TV"
-        });
-
-        playlist.push({
-          url: "dvb-t://frequency=554000000:bandwidth=0:program=1281",
-          title: "TF 1"
-        });
-
-        playlist.push({
-          url: "dvb-t://frequency=554000000:bandwidth=0:program=1282",
-          title: "France 2"
-        });
-
-        playlist.push({
-          url: "dvb-t://frequency=554000000:bandwidth=0:program=1283",
-          title: "M6"
-        });
-
-
-        player.addPlaylist(playlist); //"https://www.youtube.com/watch?v=WdNYal09Pfw"
-
-        video.playlist.playItem(0);
-
-
-*/
-
-
     function triggerBell(){
 
         if(entrance.attr('src') !== undefined) {
@@ -91,13 +49,12 @@ $( document ).ready(function() {
             accept.addClass('button-selected');
       });
 
-      //video.emitJsMessage("[entrance]");
     }
 
 
     function triggerFireAlarm(){
 
-      //video.emitJsMessage("[fireAlarm]");
+      
 }
 
 
@@ -130,35 +87,12 @@ $( document ).ready(function() {
     });
 
     socket.on('alarm', function (data){
-        //video.emitJsMessage("[fireAlarm]");
+
     });
 
 
-$("#ouvrir").click(function(e){
-    socket.emit("ouverturePorte");
-});
 
-$("#fermer").click(function(e){
-    socket.emit("fermeturePorte");
-});
-
-/*
-$("#ouvrirPlaylist").click(function(e){
-    video.emitJsMessage("[playlist]");
-});
-
-$("#sonette").click(function(e){
-    video.emitJsMessage("[trigger]");
-});
-
-$("#alarm").click(function(e){
-    video.emitJsMessage("[fireAlarm]");
-});
-*/
-
-
-    //vlc.video.toggleFullscreen();
-    //vlc.video.aspectRatio = "16:9";
+    vlc.video.aspectRatio = "16:9";
     var tf1 = vlc.playlist.add("dvb-t://frequency=554000000:bandwidth=0", "tf1", "program=1281");
     var fr2 = vlc.playlist.add("dvb-t://frequency=554000000:bandwidth=0", "fr2", "program=1282");
     var m6 = vlc.playlist.add("dvb-t://frequency=554000000:bandwidth=0", "m6", "program=1283");
@@ -179,10 +113,12 @@ $("#alarm").click(function(e){
 
     function validateChoice(){
         triggerBell();
-       getActiveButton() === accept ? socket.emit("ouverturePorte") : alert("Porte fermée");
+       getActiveButton() === accept ? socket.emit("ouverturePorte") : socket.emit("fermeturePorte");
     }
 
 
+//socket.emit("ouverturePorte");
+//socket.emit("fermeturePorte");
 
     function getActiveButton(){
         return accept.hasClass("button-selected") ? accept : refuse;

@@ -7,26 +7,6 @@ block content
     object(classid='clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921', codebase='http://download.videolan.org/pub/videolan/vlc/last/win32/axvlc.cab', style='display:none;')
 
 
-
-  //object(id='player' type='application/x-chimera-plugin', width='100%', height='100%')
-    //param(name='target', value='https://www.youtube.com/watch?v=mbierZG716c')
-    param(name='qmlsrc', value='player/themes/sleek/main.qml')
-    param(name='autoplay', value='false')
-
-
-  //div(style='width: 100%; height: 100%; background: #000')
-    object(id='webchimera1' type='application/x-chimera-plugin', width='50%', height='50%')
-      param(name='target', value='http://cs.isen.fr/camera/mjpg/video.mjpg')
-      param(name='qmlsrc', value='http://www.webchimera.org/player/themes/retro/main.qml')
-      param(name='autoplay', value='false')
-
-    object(id='webchimera2' type='application/x-chimera-plugin', width='50%', height='50%')
-      param(name='target', value='http://cs.isen.fr/camera/mjpg/video.mjpg')
-      param(name='qmlsrc', value='http://www.webchimera.org/player/themes/retro/main.qml')
-      param(name='autoplay', value='false')
-
-
-
   .notification(style="display:none")
     img#entrance
     button#accept.button-success.pure-button.button-selected
@@ -35,9 +15,3 @@ block content
     button#refuse.button-error.pure-button
       i.fa.fa-close.fa-3x
         | Refuser
-
-  button#ouvrir(type='button') ouvrir porte
-  button#fermer(type='button') fermer porte
-  button#ouvrirPlaylist(type='button') Playlist
-  button#sonette(type='button') Sonette
-  button#alarm(type='button') alarme
