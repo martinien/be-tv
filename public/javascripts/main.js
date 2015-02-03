@@ -6,7 +6,6 @@ $.fn.slideFadeToggle  = function(speed, easing, callback) {
 $( document ).ready(function() {
 
 
-
     var notification = $(".notification"),
     entrance = $("#entrance"),
     socket = io(),
@@ -14,7 +13,7 @@ $( document ).ready(function() {
     refuse = $('#refuse'),
     vlc = document.getElementById("vlc");
 
-    
+
 
     $( "body" ).keydown(function( event ) {
         console.log("aaa");
@@ -54,7 +53,7 @@ $( document ).ready(function() {
 
     function triggerFireAlarm(){
 
-      
+
 }
 
 
