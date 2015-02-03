@@ -79,12 +79,14 @@ $( document ).ready(function() {
                 vlc.playlist.playItem(3);
                 break;
             case "GREEN":
-                switchToRefuse();
-                break;
-            case "RED":
                 switchToAccept();
                 break;
-        }
+            case "RED":
+                switchToRefuse();
+                break
+            case "RED":
+                validateChoice();
+                break;        }
     });
 
     socket.on('alarm', function(data) {
