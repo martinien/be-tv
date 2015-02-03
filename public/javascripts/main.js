@@ -84,7 +84,6 @@ $( document ).ready(function() {
 
     });
 
-    vlc.video.aspectRatio = "16:9";
     var tf1 = vlc.playlist.add("dvb-t://frequency=554000000:bandwidth=0", "tf1", "program=1281");
     var fr2 = vlc.playlist.add("dvb-t://frequency=554000000:bandwidth=0", "fr2", "program=1282");
     var m6 = vlc.playlist.add("dvb-t://frequency=554000000:bandwidth=0", "m6", "program=1283");
