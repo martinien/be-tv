@@ -5,7 +5,9 @@ $.fn.slideFadeToggle = function(speed, easing, callback) {
     }, speed, easing, callback);
 };
 
-$(document).ready(function() {
+
+$( document ).ready(function() {
+
 
     var notification = $(".notification"),
         entrance = $("#entrance"),
@@ -14,7 +16,9 @@ $(document).ready(function() {
         refuse = $('#refuse'),
         vlc = document.getElementById("vlc");
 
-    $("body").keydown(function(event) {
+
+
+    $( "body" ).keydown(function( event ) {
         console.log("aaa");
         if (event.which == 39 && !refuse.hasClass("button-selected")) {
             //flèche droite
@@ -44,6 +48,7 @@ $(document).ready(function() {
     }
 
     function triggerFireAlarm() {
+
 
     }
 
