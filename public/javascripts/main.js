@@ -63,15 +63,22 @@ $(document).ready(function() {
     });
 
     socket.on('cmd', function(data) {
-        //data = id de la commande
-        if (data == 16) {
-            vlc.playlist.playItem(1);
-        }
-        if (data == 2064) {
-            vlc.playlist.playItem(2);
-        }
-        if (data == 1040) {
-            vlc.playlist.playItem(3);
+        switch(data) {
+            case "1":
+                vlc.playlist.playItem(1);
+                break;
+            case "2":
+                vlc.playlist.playItem(2);
+                break;
+            case "6":
+                vlc.playlist.playItem(3);
+                break;
+            case "GREEN":
+                switchToRefuse();
+                break;
+            case "RED":
+                switchToAccept();
+                break;
         }
     });
 
