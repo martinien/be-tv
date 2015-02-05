@@ -9,7 +9,7 @@ body {
   overflow:hidden;
 }
 
-.notification {
+#notification {
   position: absolute;
   top:0;
   right:0;
@@ -17,10 +17,16 @@ body {
   height:600px;
   width:650px;
   background-color: #7f8c8d;
+  border: 5px solid #bdc3c7;
+  border-radius: 20px;
 }
 #entrance{
   height:500px;
   width:100%;
+}
+
+.showing{
+  background: url('http://cs.isen.fr/camera/mjpg/video.mjpg')
 }
 
 
@@ -42,15 +48,22 @@ body {
 
 
 
-#accept{
-  margin: 15px 0 0 50px;
-}
-#refuse{
-  margin: 15px 0 0 150px;
+#accept, #refuse{
+  width: 50%;
+  cursor:pointer;
+  margin-top: 550px;
+  position: absolute;
+  bottom:0;
 }
 
-#accept, #refuse{
-  cursor:pointer;
+#accept{
+  border-bottom-left-radius: 30px;
+  left:0;
+}
+
+#refuse{
+  border-bottom-right-radius: 30px;
+  right: 0;
 }
 
 #container{

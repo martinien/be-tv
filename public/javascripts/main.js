@@ -9,17 +9,17 @@ $.fn.slideFadeToggle = function(speed, easing, callback) {
 $( document ).ready(function() {
 
 
-    var notification = $(".notification"),
-        entrance = $("#entrance"),
+    var notification = $("#notification"),
+        //entrance = $("#entrance"),
         socket = io(),
         accept = $('#accept'),
         refuse = $('#refuse'),
-        vlc = document.getElementById("vlc");
+        vlc = $("#vlc")[0];
 
 
 
     $( "body" ).keydown(function( event ) {
-        console.log("aaa");
+
         if (event.which == 39 && !refuse.hasClass("button-selected")) {
             //flèche droite
             switchToRefuse();
@@ -36,10 +36,16 @@ $( document ).ready(function() {
 
     function triggerBell() {
 
-        if (entrance.attr('src') !== undefined) {
+        /*if (entrance.attr('src') !== undefined) {
             entrance.removeAttr('src');
         } else {
             entrance.attr('src', 'http://cs.isen.fr/camera/mjpg/video.mjpg');
+        }*/
+
+        if (notification.hasClass('showing') === true) {
+          notification.removeClass('showing');
+        } else {
+          notification.addClass('showing');
         }
         notification.slideFadeToggle(200, function(e) {
             accept.addClass('button-selected');
@@ -63,7 +69,6 @@ $( document ).ready(function() {
     });
 
     socket.on('bellRing', function(data) {
-        console.log("sonette activée")
         triggerBell();
     });
 
