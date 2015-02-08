@@ -50,19 +50,19 @@ body {
 
 #accept, #refuse{
   width: 50%;
+  height: 65px;
   cursor:pointer;
-  margin-top: 550px;
   position: absolute;
   bottom:0;
 }
 
 #accept{
-  border-bottom-left-radius: 30px;
+  border-bottom-left-radius: 15px;
   left:0;
 }
 
 #refuse{
-  border-bottom-right-radius: 30px;
+  border-bottom-right-radius: 15px;
   right: 0;
 }
 

@@ -95,7 +95,13 @@ $( document ).ready(function() {
     });
 
     socket.on('alarm', function(data) {
-
+      vlc.playlist.togglePause();
+      $('#basic-modal-content').modal({
+        onClose: function(){
+          vlc.playlist.togglePause();
+          $.modal.close();
+        }
+      });
     });
 
     var tf1 = vlc.playlist.add("dvb-t://frequency=554000000:bandwidth=0", "tf1", "program=1281");

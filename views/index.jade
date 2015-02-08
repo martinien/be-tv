@@ -8,10 +8,16 @@ block content
 
 
   #notification(style="display:none")
-    //img#entrance
     button#accept.button-success.pure-button.button-selected
-      i.fa.fa-check.fa-3x
-        | Accepter
+      i.fa.fa-phone.fa-3x
+        | Ouvrir
     button#refuse.button-error.pure-button
       i.fa.fa-close.fa-3x
-        | Refuser
+        | Fermer
+
+  #basic-modal-content
+    h1 Fumée détectée
+    img(src='../../images/issue-de-secours.png' height='350px' width='350px')
+    p
+      Un détecteur de fumée a été activé.
+      Veuillez vous diriger vers l'issue de secours la plus proche.
