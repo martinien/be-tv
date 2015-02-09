@@ -18,6 +18,7 @@ $( document ).ready(function() {
 
 
 
+
     $( "body" ).keydown(function( event ) {
 
         if (event.which == 39 && !refuse.hasClass("button-selected")) {
@@ -89,16 +90,24 @@ $( document ).ready(function() {
             case "RED":
                 switchToRefuse();
                 break
-            case "RED":
-                validateChoice();
-                break;        }
+            case "OK":
+                if($("#basic-modal-content").hasClass('simplemodal-data')){
+                  //modal ouvert
+                }
+                else{
+                  validateChoice();
+                }
+                break;
+            }
     });
 
     socket.on('alarm', function(data) {
-      vlc.playlist.togglePause();
+
+
+      vlc.playlist.stop();
       $('#basic-modal-content').modal({
         onClose: function(){
-          vlc.playlist.togglePause();
+          vlc.playlist.play();
           $.modal.close();
         }
       });
