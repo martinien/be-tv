@@ -92,7 +92,7 @@ $( document ).ready(function() {
                 break
             case "OK":
                 if($("#basic-modal-content").hasClass('simplemodal-data')){
-                  //modal ouvert
+                    $.modal.close();
                 }
                 else{
                   validateChoice();
@@ -113,10 +113,10 @@ $( document ).ready(function() {
       });
     });
 
-    var tf1 = vlc.playlist.add("dvb-t://frequency=554000000:bandwidth=0", "tf1", "program=1281");
-    var fr2 = vlc.playlist.add("dvb-t://frequency=554000000:bandwidth=0", "fr2", "program=1282");
-    var m6 = vlc.playlist.add("dvb-t://frequency=554000000:bandwidth=0", "m6", "program=1283");
-    vlc.playlist.add("dvb-t://frequency=594000000:bandwidth=0", "grdLilleTv", "");
+    var tf1 = vlc.playlist.add("http://127.0.0.1:8866/live?channel=51");
+    var fr2 = vlc.playlist.add("http://127.0.0.1:8866/live?channel=52");
+    var m6 = vlc.playlist.add("http://127.0.0.1:8866/live?channel=56");
+    vlc.playlist.add("http://127.0.0.1:8866/live?channel=31");
 
     function switchToRefuse() {
         accept.removeClass("button-selected");
