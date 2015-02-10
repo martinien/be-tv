@@ -10,7 +10,7 @@ $( document ).ready(function() {
 
 
     var notification = $("#notification"),
-        //entrance = $("#entrance"),
+        entrance = $("#entrance"),
         socket = io(),
         accept = $('#accept'),
         refuse = $('#refuse'),
@@ -18,36 +18,19 @@ $( document ).ready(function() {
 
 
 
-
-    $( "body" ).keydown(function( event ) {
-
-        if (event.which == 39 && !refuse.hasClass("button-selected")) {
-            //flèche droite
-            switchToRefuse();
-        } else if (event.which == 37 && !accept.hasClass("button-selected")) {
-            //flèche gauche
-            switchToAccept();
-        } else if (event.which == 13) {
-            validateChoice();
-        } else {
-            return;
-        }
-
-    });
-
     function triggerBell() {
 
-        /*if (entrance.attr('src') !== undefined) {
+        if (entrance.attr('src') !== undefined) {
             entrance.removeAttr('src');
         } else {
             entrance.attr('src', 'http://cs.isen.fr/camera/mjpg/video.mjpg');
-        }*/
+        }
 
-        if (notification.hasClass('showing') === true) {
+        /*if (notification.hasClass('showing') === true) {
           notification.removeClass('showing');
         } else {
           notification.addClass('showing');
-        }
+        }*/
         notification.slideFadeToggle(200, function(e) {
             accept.addClass('button-selected');
         });
