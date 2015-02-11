@@ -13,7 +13,8 @@ $( document ).ready(function() {
         socket = io(),
         accept = $('#accept'),
         refuse = $('#refuse'),
-        vlc = $("#vlc")[0];
+        vlc = $("#vlc")[0],
+        entranceShown = false;
 
 
 
@@ -36,23 +37,35 @@ $( document ).ready(function() {
 
     }
 
+    function showEntrance() {
+
+      if (!entranceShown) {
+          entrance.attr('src', 'http://cs.isen.fr/camera/mjpg/video.mjpg');
+          notification.slideFadeToggle(200, function(e) {
+              accept.addClass('button-selected');
+          });
+          entranceShown = true;
+      }
+
+    }
+
+    function hideEntrance() {
+
+        entrance.removeAttr('src');
+        notification.slideFadeToggle(200, function(e) {
+            accept.addClass('button-selected');
+        });
+        entranceShown = false;
+
+    }
+
     function triggerFireAlarm() {
 
 
     }
 
-    accept.click(function(e) {
-        triggerBell();
-        alert("Ouverture de la porte");
-    });
-
-    refuse.click(function(e) {
-        triggerBell();
-        alert("Porte fermée");
-    });
-
     socket.on('bellRing', function(data) {
-        triggerBell();
+        showEntrance();
     });
 
     var timer = 0;
@@ -133,7 +146,7 @@ $( document ).ready(function() {
 
     function validateChoice() {
         getActiveButton() === accept ? socket.emit("ouverturePorte") : socket.emit("fermeturePorte");
-        triggerBell();
+        closeEntrance();
     }
 
     //socket.emit("ouverturePorte");
