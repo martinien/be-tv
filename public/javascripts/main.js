@@ -132,8 +132,8 @@ $( document ).ready(function() {
     }
 
     function validateChoice() {
-        triggerBell();
         getActiveButton() === accept ? socket.emit("ouverturePorte") : socket.emit("fermeturePorte");
+        triggerBell();
     }
 
     //socket.emit("ouverturePorte");
