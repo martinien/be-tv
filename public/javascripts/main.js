@@ -8,7 +8,6 @@ $.fn.slideFadeToggle = function(speed, easing, callback) {
 
 $( document ).ready(function() {
 
-
     var notification = $("#notification"),
         entrance = $("#entrance"),
         socket = io(),
@@ -56,16 +55,37 @@ $( document ).ready(function() {
         triggerBell();
     });
 
+    var timer = 0;
+    var nbr = "";
     socket.on('cmd', function(data) {
         switch(data) {
             case "1":
-                vlc.playlist.playItem(1);
-                break;
             case "2":
-                vlc.playlist.playItem(2);
-                break;
+            case "3":
+            case "4":
+            case "5":
             case "6":
-                vlc.playlist.playItem(3);
+            case "7":
+            case "8":
+            case "9":
+            case "0":
+                if(Math.floor(Date.now() / 1000) - timer < 3 ) {
+                    nbr = nbr + data;
+                    $("#channel h1").html(nbr);
+                } else {
+                    timer = 0;
+                    nbr = "";
+                }
+                if(timer == 0) {
+                    nbr = nbr + data;
+                    $("#channel").show();
+                    $("#channel h1").html(nbr);
+                    timer = Math.floor(Date.now() / 1000);
+                    setTimeout(function(){
+                        $("#channel").hide();
+                        vlc.playlist.playItem(parseInt(nbr));
+                    }, 3000);
+                }
                 break;
             case "GREEN":
                 switchToAccept();

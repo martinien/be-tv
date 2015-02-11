@@ -9,6 +9,25 @@ body {
   overflow:hidden;
 }
 
+#channel {
+  position: absolute;
+  top:5%;
+  right:5%;
+  z-index: 100;
+  height:10%;
+  width:15%;
+  background-color: black;
+  border: 5px solid white;
+  border-radius: 20px;
+  overflow:hidden;
+}
+
+#channel h1 {
+  color:white;
+  text-align:right;
+  margin: 5%;
+}
+
 #notification {
   position: absolute;
   top:0;
