@@ -135,10 +135,27 @@ $( document ).ready(function() {
       });
     });
 
-    var tf1 = vlc.playlist.add("http://127.0.0.1:8866/live?channel=51");
-    var fr2 = vlc.playlist.add("http://127.0.0.1:8866/live?channel=52");
-    var m6 = vlc.playlist.add("http://127.0.0.1:8866/live?channel=56");
-    vlc.playlist.add("http://127.0.0.1:8866/live?channel=31");
+    vlc.playlist.add("http://127.0.0.1:8866/live?channel=51");
+    vlc.playlist.add("http://127.0.0.1:8866/live?channel=52");
+    vlc.playlist.add("");
+    vlc.playlist.add("");
+    vlc.playlist.add("");
+    vlc.playlist.add("http://127.0.0.1:8866/live?channel=56");
+    vlc.playlist.add("http://127.0.0.1:8866/live?channel=57");
+    vlc.playlist.add("http://127.0.0.1:8866/live?channel=8");
+    vlc.playlist.add("http://127.0.0.1:8866/live?channel=9");
+    vlc.playlist.add("");
+    vlc.playlist.add("http://127.0.0.1:8866/live?channel=11");
+    vlc.playlist.add("");
+    vlc.playlist.add("");
+    vlc.playlist.add("http://127.0.0.1:8866/live?channel=14");
+    vlc.playlist.add("http://127.0.0.1:8866/live?channel=15");
+    vlc.playlist.add("http://127.0.0.1:8866/live?channel=16");
+    vlc.playlist.add("http://127.0.0.1:8866/live?channel=17");
+    vlc.playlist.add("http://127.0.0.1:8866/live?channel=18");
+    vlc.playlist.add("");
+    vlc.playlist.add("http://127.0.0.1:8866/live?channel=20");
+    vlc.playlist.add("http://127.0.0.1:8866/live?channel=21");
 
     function switchToRefuse() {
         accept.removeClass("button-selected");
