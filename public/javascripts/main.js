@@ -15,7 +15,10 @@ $( document ).ready(function() {
         refuse = $('#refuse'),
         vlc = $("#vlc")[0],
         entranceShown = false,
-        currentChannel = 1;
+        currentChannel = 1, channelMin = 1, channelMax = 22;
+
+        var STATE = {TV: 1, BELL: 2, ALARM:3},
+            state = STATE.TV;
 
 
     
@@ -39,7 +42,7 @@ $( document ).ready(function() {
             refuse.removeClass('button-selected');
         });
         entranceShown = false;
-
+        state = STATE.TV;
     }
 
     function triggerFireAlarm() {
@@ -48,6 +51,7 @@ $( document ).ready(function() {
     }
 
     socket.on('bellRing', function(data) {
+        state = STATE.BELL;
         showEntrance();
     });
 
@@ -87,16 +91,45 @@ $( document ).ready(function() {
                     }
                     break;
                 case "GREEN":
-                    switchToAccept();
+                    if(state === STATE.BELL){
+                        switchToAccept();
+                    }
+                    
                     break;
                 case "RED":
-                    switchToRefuse();
+                    if(state === STATE.BELL){
+                        switchToRefuse();
+                    }
+                    break;
+
+                case "P+":
+                    if(state === STATE.TV){
+                        if(currentChannel === channelMax){
+                            currentChannel = channelMin;
+                        }
+                        else{
+                            currentChannel++;
+                        }
+                        $("#vlc")[0].playlist.playItem(currentChannel);
+                    }
+                    break;
+
+                case "P-":
+                if(state === STATE.TV){
+                        if(currentChannel === channelMin){
+                            currentChannel = channelMax;
+                        }
+                        else{
+                            currentChannel--;
+                        }
+                        $("#vlc")[0].playlist.playItem(currentChannel);
+                    }
                     break
                 case "OK":
-                    if($("#basic-modal-content").hasClass('simplemodal-data')){
+                    if(state === STATE.ALARM){
                         $.modal.close();
                     }
-                    else{
+                    else if (state === STATE.BELL){
                       validateChoice();
                     }
                     break;
@@ -106,13 +139,14 @@ $( document ).ready(function() {
     });
 
     socket.on('alarm', function(data) {
-
-
+        var previousState = state;
+        state = STATE.ALARM;
       vlc.playlist.stop();
       $('#basic-modal-content').modal({
         onClose: function(){
           vlc.playlist.playItem(currentChannel);
           $.modal.close();
+          state = previousState;
         }
       });
     });
