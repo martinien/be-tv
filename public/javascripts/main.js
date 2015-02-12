@@ -14,7 +14,8 @@ $( document ).ready(function() {
         accept = $('#accept'),
         refuse = $('#refuse'),
         vlc = $("#vlc")[0],
-        entranceShown = false;
+        entranceShown = false,
+        currentChannel = 1;
 
 
 
@@ -69,51 +70,56 @@ $( document ).ready(function() {
     });
 
     var timer = 0;
+    var timer2 = Math.floor(Date.now() / 1000);;
     var nbr = "";
     socket.on('cmd', function(data) {
-        switch(data) {
-            case "1":
-            case "2":
-            case "3":
-            case "4":
-            case "5":
-            case "6":
-            case "7":
-            case "8":
-            case "9":
-            case "0":
-                if(Math.floor(Date.now() / 1000) - timer < 3 ) {
-                    nbr = nbr + data;
-                    $("#channel h1").html(nbr);
-                } else {
-                    timer = 0;
-                    nbr = "";
+        if(Math.floor(Date.now() / 1000) - timer2 > 1 ) {
+            switch(data) {
+                case "1":
+                case "2":
+                case "3":
+                case "4":
+                case "5":
+                case "6":
+                case "7":
+                case "8":
+                case "9":
+                case "0":
+                    if(Math.floor(Date.now() / 1000) - timer < 4 ) {
+                        nbr = nbr + data;
+                        $("#channel h1").html(nbr);
+                    } else {
+                        timer = 0;
+                        nbr = "";
+                    }
+                    if(timer == 0) {
+                        nbr = nbr + data;
+                        $("#channel").show();
+                        $("#channel h1").html(nbr);
+                        timer = Math.floor(Date.now() / 1000);
+                        setTimeout(function(){
+                            $("#channel").hide();
+                            $("#vlc")[0].playlist.playItem(parseInt(nbr));
+                            currentChannel = parseInt(nbr);
+                        }, 3000);
+                    }
+                    break;
+                case "GREEN":
+                    switchToAccept();
+                    break;
+                case "RED":
+                    switchToRefuse();
+                    break
+                case "OK":
+                    if($("#basic-modal-content").hasClass('simplemodal-data')){
+                        $.modal.close();
+                    }
+                    else{
+                      validateChoice();
+                    }
+                    break;
                 }
-                if(timer == 0) {
-                    nbr = nbr + data;
-                    $("#channel").show();
-                    $("#channel h1").html(nbr);
-                    timer = Math.floor(Date.now() / 1000);
-                    setTimeout(function(){
-                        $("#channel").hide();
-                        vlc.playlist.playItem(parseInt(nbr));
-                    }, 3000);
-                }
-                break;
-            case "GREEN":
-                switchToAccept();
-                break;
-            case "RED":
-                switchToRefuse();
-                break
-            case "OK":
-                if($("#basic-modal-content").hasClass('simplemodal-data')){
-                    $.modal.close();
-                }
-                else{
-                  validateChoice();
-                }
-                break;
+                timer2 = Math.floor(Date.now() / 1000);
             }
     });
 
@@ -123,7 +129,7 @@ $( document ).ready(function() {
       vlc.playlist.stop();
       $('#basic-modal-content').modal({
         onClose: function(){
-          vlc.playlist.play();
+          vlc.playlist.playItem(currentChannel);
           $.modal.close();
         }
       });
@@ -146,7 +152,7 @@ $( document ).ready(function() {
 
     function validateChoice() {
         getActiveButton() === accept ? socket.emit("ouverturePorte") : socket.emit("fermeturePorte");
-        closeEntrance();
+        hideEntrance();
     }
 
     //socket.emit("ouverturePorte");
@@ -161,4 +167,5 @@ $( document ).ready(function() {
 function play(id) {
     var vlc = document.getElementById("vlc");
     vlc.playlist.playItem(id);
+    
 }
