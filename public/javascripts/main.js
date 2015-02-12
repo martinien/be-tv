@@ -18,26 +18,7 @@ $( document ).ready(function() {
         currentChannel = 1;
 
 
-
-    function triggerBell() {
-
-        if (entrance.attr('src') !== undefined) {
-            entrance.removeAttr('src');
-        } else {
-            entrance.attr('src', 'http://cs.isen.fr/camera/mjpg/video.mjpg');
-        }
-
-        /*if (notification.hasClass('showing') === true) {
-          notification.removeClass('showing');
-        } else {
-          notification.addClass('showing');
-        }*/
-        notification.slideFadeToggle(200, function(e) {
-            accept.addClass('button-selected');
-        });
-
-    }
-
+    
     function showEntrance() {
 
       if (!entranceShown) {
@@ -54,7 +35,8 @@ $( document ).ready(function() {
 
         entrance.removeAttr('src');
         notification.slideFadeToggle(200, function(e) {
-            accept.addClass('button-selected');
+            accept.removeClass('button-selected');
+            refuse.removeClass('button-selected');
         });
         entranceShown = false;
 
@@ -156,6 +138,7 @@ $( document ).ready(function() {
     vlc.playlist.add("");
     vlc.playlist.add("http://127.0.0.1:8866/live?channel=20");
     vlc.playlist.add("http://127.0.0.1:8866/live?channel=21");
+    vlc.playlist.add("http://127.0.0.1:8866/live?channel=31");
 
     function switchToRefuse() {
         accept.removeClass("button-selected");
