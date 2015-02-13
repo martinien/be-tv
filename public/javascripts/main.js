@@ -51,12 +51,14 @@ $( document ).ready(function() {
     }
 
     socket.on('bellRing', function(data) {
-        state = STATE.BELL;
-        showEntrance();
+        if(state === STATE.TV){
+            state = STATE.BELL;
+            showEntrance();
+        }
     });
 
     var timer = 0;
-    var timer2 = Math.floor(Date.now() / 1000);;
+    var timer2 = Math.floor(Date.now() / 1000);
     var nbr = "";
     socket.on('cmd', function(data) {
         if(Math.floor(Date.now() / 1000) - timer2 > 1 ) {
@@ -139,9 +141,14 @@ $( document ).ready(function() {
     });
 
     socket.on('alarm', function(data) {
+        console.log(state);
         var previousState = state;
         state = STATE.ALARM;
       vlc.playlist.stop();
+      if(previousState === STATE.BELL){
+        socket.emit("fermeturePorte");
+        hideEntrance();
+      }
       $('#basic-modal-content').modal({
         onClose: function(){
           vlc.playlist.playItem(currentChannel);
