@@ -169,21 +169,26 @@ $( document ).ready(function() {
     });
 
     socket.on('alarm', function(data) {
-        console.log(state);
-        var previousState = state;
-        state = STATE.ALARM;
-      vlc.playlist.stop();
-      if(previousState === STATE.BELL){
-        socket.emit("fermeturePorte");
-        hideEntrance();
+       
+       if(state !== STATE.ALARM){ 
+                var previousState = state;
+                
+              vlc.playlist.stop();
+              if(previousState === STATE.BELL){
+                socket.emit("fermeturePorte");
+                hideEntrance(); 
+              }
+              
+              state = STATE.ALARM;
+              $('#basic-modal-content').modal({
+                onClose: function(){
+                  vlc.playlist.playItem(currentChannel);
+                  $.modal.close();
+                  state = previousState;
+                }
+              });
       }
-      $('#basic-modal-content').modal({
-        onClose: function(){
-          vlc.playlist.playItem(currentChannel);
-          $.modal.close();
-          state = previousState;
-        }
-      });
+
     });
 
     vlc.playlist.add("http://127.0.0.1:8866/live?channel=51");
