@@ -223,8 +223,8 @@ function clickOnLight(obj){
     });
 }
 
-function stratBlink(){
-    jsonString = '{"hue": 65000,"on": true,"bri": 10,"alert": "lselect"}';
+function startBlink(color){
+    jsonString = '{"hue": ' + color + ',"on": true,"bri": 10,"alert": "lselect"}';
     lightUrl = "http://10.134.15.60/api/2fe88a512405b6771b4ed88524094ab/lights/1/state";
     getHTML('PUT');
     lightUrl = "http://10.134.15.60/api/2fe88a512405b6771b4ed88524094ab/lights/2/state";

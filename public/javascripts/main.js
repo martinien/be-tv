@@ -73,8 +73,9 @@ $( document ).ready(function() {
     }
 
     socket.on('bellRing', function(data) {
+        startBlink("46920");
+        setTimeout(stopBlink(), 1000);
         if(state === STATE.TV){
-            startBlink();
             state = STATE.BELL;
             showEntrance();
         }
@@ -84,7 +85,6 @@ $( document ).ready(function() {
     var timer2 = Math.floor(Date.now() / 1000);
     var nbr = "";
     socket.on('cmd', function(data) {
-        if(Math.floor(Date.now() / 1000) - timer2 > 1 ) {
             switch(data) {
                 case "1":
                 case "2":
@@ -96,37 +96,38 @@ $( document ).ready(function() {
                 case "8":
                 case "9":
                 case "0":
-                    if(Math.floor(Date.now() / 1000) - timer < 4 ) {
-                        nbr = nbr + data;
-                        $("#channel h1").html(nbr);
-                    } else {
-                        timer = 0;
-                        nbr = "";
+                    if(Math.floor(Date.now() / 1000) - timer2 > 1 ) {
+                        if(Math.floor(Date.now() / 1000) - timer < 4 ) {
+                            nbr = nbr + data;
+                            $("#channel h1").html(nbr);
+                        } else {
+                            timer = 0;
+                            nbr = "";
+                        }
+                        if(timer == 0) {
+                            nbr = nbr + data;
+                            $("#channel").show();
+                            $("#channel h1").html(nbr);
+                            timer = Math.floor(Date.now() / 1000);
+                            setTimeout(function(){
+                                $("#channel").hide();
+                                $("#vlc")[0].playlist.playItem(parseInt(nbr));
+                                currentChannel = parseInt(nbr);
+                            }, 3000);
+                        }
                     }
-                    if(timer == 0) {
-                        nbr = nbr + data;
-                        $("#channel").show();
-                        $("#channel h1").html(nbr);
-                        timer = Math.floor(Date.now() / 1000);
-                        setTimeout(function(){
-                            $("#channel").hide();
-                            $("#vlc")[0].playlist.playItem(parseInt(nbr));
-                            currentChannel = parseInt(nbr);
-                        }, 3000);
-                    }
+                    timer2 = Math.floor(Date.now() / 1000);
                     break;
                 case "GREEN":
                     if(state === STATE.BELL){
                         switchToAccept();
                     }
-
                     break;
                 case "RED":
                     if(state === STATE.BELL){
                         switchToRefuse();
                     }
                     break;
-
                 case "P+":
                     if(state === STATE.TV){
                         if(currentChannel === channelMax){
@@ -138,7 +139,6 @@ $( document ).ready(function() {
                         $("#vlc")[0].playlist.playItem(currentChannel);
                     }
                     break;
-
                 case "P-":
                 if(state === STATE.TV){
                         if(currentChannel === channelMin){
@@ -165,12 +165,13 @@ $( document ).ready(function() {
                     soap('AAAAAQAAAAEAAAATAw==');
                     break;
             }
-                timer2 = Math.floor(Date.now() / 1000);
-        }
+                
+        
     });
 
     socket.on('alarm', function(data) {
-
+        startBlink("65000");
+        setTimeout(stopBlink(), 1000);
        if(state !== STATE.ALARM){
                 var previousState = state;
 
