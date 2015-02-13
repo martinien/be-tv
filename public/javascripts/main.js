@@ -74,7 +74,7 @@ $( document ).ready(function() {
 
     socket.on('bellRing', function(data) {
         startBlink("46920");
-        setTimeout(stopBlink(), 1000);
+        setTimeout(stopBlink(), 500);
         if(state === STATE.TV){
             state = STATE.BELL;
             showEntrance();
@@ -172,7 +172,7 @@ $( document ).ready(function() {
 
     socket.on('alarm', function(data) {
         startBlink("65000");
-        setTimeout(stopBlink(), 1000);
+        
        if(state !== STATE.ALARM){
                 var previousState = state;
 
@@ -188,6 +188,14 @@ $( document ).ready(function() {
                   vlc.playlist.playItem(currentChannel);
                   $.modal.close();
                   state = previousState;
+                  stopBlink();
+                    jsonString = '{"hue": ' +  light1HueValue + ',"on": true,"bri": 10}';
+                    lightUrl = "http://10.134.15.60/api/2fe88a512405b6771b4ed88524094ab/lights/1/state";
+                    getHTML('PUT');
+                    jsonString = '{"hue": ' +  light2HueValue + ',"on": true,"bri": 10}';
+                    lightUrl = "http://10.134.15.60/api/2fe88a512405b6771b4ed88524094ab/lights/1/state";
+                    lightUrl = "http://10.134.15.60/api/2fe88a512405b6771b4ed88524094ab/lights/2/state";
+                    getHTML('PUT');
                 }
               });
       }
@@ -228,8 +236,30 @@ $( document ).ready(function() {
     }
 
     function validateChoice() {
-        getActiveButton() === accept ? socket.emit("ouverturePorte") : socket.emit("fermeturePorte");
+        getActiveButton() === accept ? openDoor() : closeDoor();
         hideEntrance();
+    }
+
+    function openDoor() {
+
+        jsonString = '{"hue": 25500,"on": true,"bri": 10}';
+        lightUrl = "http://10.134.15.60/api/2fe88a512405b6771b4ed88524094ab/lights/1/state";
+        getHTML('PUT');
+        lightUrl = "http://10.134.15.60/api/2fe88a512405b6771b4ed88524094ab/lights/2/state";
+        getHTML('PUT');
+
+        socket.emit("ouverturePorte");
+    }
+
+    function closeDoor(){
+        
+
+        jsonString = '{"hue": 0,"on": true,"bri": 10}';
+        lightUrl = "http://10.134.15.60/api/2fe88a512405b6771b4ed88524094ab/lights/1/state";
+        getHTML('PUT');
+        lightUrl = "http://10.134.15.60/api/2fe88a512405b6771b4ed88524094ab/lights/2/state";
+        getHTML('PUT');
+        socket.emit("fermeturePorte");
     }
 
     //socket.emit("ouverturePorte");
