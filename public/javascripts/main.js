@@ -74,6 +74,7 @@ $( document ).ready(function() {
 
     socket.on('bellRing', function(data) {
         if(state === STATE.TV){
+            startBlink();
             state = STATE.BELL;
             showEntrance();
         }
@@ -169,16 +170,16 @@ $( document ).ready(function() {
     });
 
     socket.on('alarm', function(data) {
-       
-       if(state !== STATE.ALARM){ 
+
+       if(state !== STATE.ALARM){
                 var previousState = state;
-                
+
               vlc.playlist.stop();
               if(previousState === STATE.BELL){
                 socket.emit("fermeturePorte");
-                hideEntrance(); 
+                hideEntrance();
               }
-              
+
               state = STATE.ALARM;
               $('#basic-modal-content').modal({
                 onClose: function(){
