@@ -115,8 +115,9 @@ $( document ).ready(function() {
                                 currentChannel = parseInt(nbr);
                             }, 3000);
                         }
+                        timer2 = Math.floor(Date.now() / 1000);
                     }
-                    timer2 = Math.floor(Date.now() / 1000);
+                    
                     break;
                 case "GREEN":
                     if(state === STATE.BELL){
