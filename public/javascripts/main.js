@@ -5,6 +5,28 @@ $.fn.slideFadeToggle = function(speed, easing, callback) {
     }, speed, easing, callback);
 };
 
+function soap(CMD) {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open('POST', 'http://10.134.15.110/sony/IRCC', true);
+	xmlhttp.setRequestHeader("X-Auth-PSK", "iamisen");
+    var sr = '<?xml version="1.0"?>' +
+		'<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">' +
+		'<SOAP-ENV:Body>' + '<m:X_SendIRCC xmlns:m="urn:schemas-sony-com:service:IRCC:1">' +
+		'<IRCCCode xmlns:dt="urn:schemas-microsoft-com:datatypes" dt:dt="string">' +
+		CMD +
+		'</IRCCCode>' +
+		'</m:X_SendIRCC>' +
+		'</SOAP-ENV:Body>' +
+		'</SOAP-ENV:Envelope>';
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4) {
+            if (xmlhttp.status == 200) {
+            }
+        }
+    }
+    xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+    xmlhttp.send(sr);
+}
 
 $( document ).ready(function() {
 
@@ -21,7 +43,7 @@ $( document ).ready(function() {
             state = STATE.TV;
 
 
-    
+
     function showEntrance() {
 
       if (!entranceShown) {
@@ -94,7 +116,7 @@ $( document ).ready(function() {
                     if(state === STATE.BELL){
                         switchToAccept();
                     }
-                    
+
                     break;
                 case "RED":
                     if(state === STATE.BELL){
@@ -133,9 +155,15 @@ $( document ).ready(function() {
                       validateChoice();
                     }
                     break;
-                }
-                timer2 = Math.floor(Date.now() / 1000);
+                case "V+":
+                    soap('AAAAAQAAAAEAAAASAw==');
+                    break;
+                case "V-":
+                    soap('AAAAAQAAAAEAAAATAw==');
+                    break;
             }
+                timer2 = Math.floor(Date.now() / 1000);
+        }
     });
 
     socket.on('alarm', function(data) {
@@ -201,5 +229,5 @@ $( document ).ready(function() {
 function play(id) {
     var vlc = document.getElementById("vlc");
     vlc.playlist.playItem(id);
-    
+
 }
