@@ -165,6 +165,9 @@ $( document ).ready(function() {
                 case "V-":
                     soap('AAAAAQAAAAEAAAATAw==');
                     break;
+                case "MUTE":
+                    soap('AAAAAQAAAAEAAAAUAw==');
+                    break;
             }
                 
         
