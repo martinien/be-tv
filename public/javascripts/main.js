@@ -156,6 +156,7 @@ $( document ).ready(function() {
                 case "BLUE":
                     if(show == 0) {
                         $("#weather").show();
+                        show = 1;
                     } else {
                         $("#weather").hide();
                         show = 0;
