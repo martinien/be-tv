@@ -1,4 +1,4 @@
-$.fn.slideFadeToggle = function(speed, easing, callback) {
+/*$.fn.slideFadeToggle = function(speed, easing, callback) {
   return this.animate({
     opacity: 'toggle',
     height: 'toggle'
@@ -323,4 +323,4 @@ function play(id) {
   var vlc = document.getElementById("vlc");
   vlc.playlist.playItem(id);
 
-}
+}*/
