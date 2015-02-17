@@ -139,9 +139,6 @@ function clickOnLight(obj) {
         light2on = false;
       }
     }
-
-
-
     getHTML('PUT');
   }
 
@@ -239,12 +236,10 @@ function stopBlink() {
   getHTML('PUT');
 }
 
-
 function rgb2hex(rgb) {
   rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
   return "0x" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
 }
-
 
 function getHTML(command) {
   if (window.XMLHttpRequest) {
@@ -265,9 +260,6 @@ function getHTML(command) {
   }
   return false;
 }
-
-
-
 
 function hueToHex(hueValue) {
   for (var i = 0; i < colorTab.length; i++) {
