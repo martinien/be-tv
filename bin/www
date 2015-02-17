@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 var debug = require('debug')('serverView');
 var app = require('../app');
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
@@ -7,17 +8,17 @@ app.set('port', process.env.PORT || 3000);
 
 io = require('socket.io').listen(app.listen(app.get('port')));
 
-io.sockets.on('connection', function (socket) {
+io.sockets.on('connection', function(socket) {
 
-  socket.on('disconnect', function(){
+  socket.on('disconnect', function() {
     console.log('user disconnected');
   });
 
-  socket.on('ouverturePorte', function(){
+  socket.on('ouverturePorte', function() {
     openDoor();
   });
 
-  socket.on('fermeturePorte', function(){
+  socket.on('fermeturePorte', function() {
 
     closeDoor();
   });
@@ -25,29 +26,25 @@ io.sockets.on('connection', function (socket) {
 });
 
 function openDoor() {
-    var xmlhttp=new XMLHttpRequest();
-    xmlhttp.onreadystatechange=function()
-    {
-      console.log(xmlhttp.readyState, xmlhttp.status);
-        if (xmlhttp.readyState==4 && xmlhttp.status==503)
-        {
-            setTimeout(closeDoor, 4000);
-        }
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    console.log(xmlhttp.readyState, xmlhttp.status);
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 503) {
+      setTimeout(closeDoor, 4000);
     }
-    xmlhttp.open("GET","http://10.134.15.120:8086/fhem?cmd.Switch=set%20Switch%20on&room=all",true);
-    xmlhttp.send();
+  }
+  xmlhttp.open("GET", "http://10.134.15.120:8086/fhem?cmd.Switch=set%20Switch%20on&room=all", true);
+  xmlhttp.send();
 }
 
 function closeDoor() {
-    var xmlhttp=new XMLHttpRequest();
-    console.log('fermeture')
-    xmlhttp.onreadystatechange=function()
-    {
-        if (xmlhttp.readyState==4 && xmlhttp.status==200)
-        {
-            //porte fermée
-        }
+  var xmlhttp = new XMLHttpRequest();
+  console.log('fermeture')
+  xmlhttp.onreadystatechange = function() {
+    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+      //porte fermée
     }
-    xmlhttp.open("GET","http://10.134.15.120:8086/fhem?cmd.Switch=set%20Switch%20off&room=all",true);
-    xmlhttp.send();
+  }
+  xmlhttp.open("GET", "http://10.134.15.120:8086/fhem?cmd.Switch=set%20Switch%20off&room=all", true);
+  xmlhttp.send();
 }
