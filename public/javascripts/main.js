@@ -29,40 +29,41 @@ function soap(CMD) {
 }
 
 $( document ).ready(function() {
-      $.simpleWeather({
-        woeid: '608105', //2357536
-        location: '',
-        unit: 'c',
-        success: function(weather) {
-          var date = new Date();
-          html = '<h3>'+weather.city+'</h3>';
-          html += '<h4>'+date.getDate()+'/'+(parseInt(date.getMonth())+1)+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+'</h4>'
-          html += '<h2><i class="icon-'+weather.code+'"></i>';
-          html += weather.temp+'&deg;'+weather.units.temp+'</h2>';
-          html += '<table>';
-          html += '<tr>';
-          for(var i=0;i<weather.forecast.length;i++) {
-            html += '<td>'+weather.forecast[i].day+'</td>';
+    function meteo() {
+        $.simpleWeather({
+          woeid: '608105', //2357536
+          location: '',
+          unit: 'c',
+          success: function(weather) {
+            var date = new Date();
+            html = '<h3>'+weather.city+'</h3>';
+            html += '<h4>'+date.getDate()+'/'+(parseInt(date.getMonth())+1)+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+'</h4>'
+            html += '<h2><i class="icon-'+weather.code+'"></i>';
+            html += weather.temp+'&deg;'+weather.units.temp+'</h2>';
+            html += '<table>';
+            html += '<tr>';
+            for(var i=0;i<weather.forecast.length;i++) {
+              html += '<td>'+weather.forecast[i].day+'</td>';
+            }
+            html += '</tr>';
+            html += '<tr>';
+            for(var i=0;i<weather.forecast.length;i++) {
+              html += '<td><i class="icon-'+weather.forecast[i].code+'"></i></td>';
+            }
+            html += '</tr>';
+            html += '<tr>';
+            for(var i=0;i<weather.forecast.length;i++) {
+              html += '<td>'+weather.forecast[i].high+'&deg;'+weather.units.temp+'</td>';
+            }
+            html += '</tr>';
+        	  html += '</table>';
+            $("#weather").html(html);
+          },
+          error: function(error) {
+            $("#weather").html('<p>'+error+'</p>');
           }
-          html += '</tr>';
-          html += '<tr>';
-          for(var i=0;i<weather.forecast.length;i++) {
-            html += '<td><i class="icon-'+weather.forecast[i].code+'"></i></td>';
-          }
-          html += '</tr>';
-          html += '<tr>';
-          for(var i=0;i<weather.forecast.length;i++) {
-            html += '<td>'+weather.forecast[i].high+'&deg;'+weather.units.temp+'</td>';
-          }
-          html += '</tr>';
-      	  html += '</table>';
-          $("#weather").html(html);
-        },
-        error: function(error) {
-          $("#weather").html('<p>'+error+'</p>');
-        }
-      });
-
+        });
+      }
     var notification = $("#notification"),
         entrance = $("#entrance"),
         socket = io(),
@@ -75,8 +76,9 @@ $( document ).ready(function() {
         var STATE = {TV: 1, BELL: 2, ALARM:3},
             state = STATE.TV;
 
-
-
+    accept.click(function() { hideEntrance(); });
+    refuse.click(function() { hideEntrance(); });
+    $(".ok").click(function() { $.modal.close(); });
     function showEntrance() {
 
       if (!entranceShown) {
@@ -155,6 +157,7 @@ $( document ).ready(function() {
                     break;
                 case "BLUE":
                     if(show == 0) {
+                        meteo();
                         $("#weather").show();
                         show = 1;
                     } else {
@@ -248,28 +251,29 @@ $( document ).ready(function() {
 
     });
 
-    vlc.playlist.add("http://127.0.0.1:8866/live?channel=51");
-    vlc.playlist.add("http://127.0.0.1:8866/live?channel=52");
-    vlc.playlist.add("");
-    vlc.playlist.add("");
-    vlc.playlist.add("");
-    vlc.playlist.add("http://127.0.0.1:8866/live?channel=56");
-    vlc.playlist.add("http://127.0.0.1:8866/live?channel=57");
-    vlc.playlist.add("http://127.0.0.1:8866/live?channel=8");
-    vlc.playlist.add("http://127.0.0.1:8866/live?channel=9");
-    vlc.playlist.add("");
-    vlc.playlist.add("http://127.0.0.1:8866/live?channel=11");
-    vlc.playlist.add("");
-    vlc.playlist.add("");
-    vlc.playlist.add("http://127.0.0.1:8866/live?channel=14");
-    vlc.playlist.add("http://127.0.0.1:8866/live?channel=15");
-    vlc.playlist.add("http://127.0.0.1:8866/live?channel=16");
-    vlc.playlist.add("http://127.0.0.1:8866/live?channel=17");
-    vlc.playlist.add("http://127.0.0.1:8866/live?channel=18");
-    vlc.playlist.add("");
-    vlc.playlist.add("http://127.0.0.1:8866/live?channel=20");
-    vlc.playlist.add("http://127.0.0.1:8866/live?channel=21");
-    vlc.playlist.add("http://127.0.0.1:8866/live?channel=31");
+  vlc.playlist.add("http://10.134.15.103:8866/live?channel=51");
+  vlc.playlist.add("http://10.134.15.103:8866/live?channel=52");
+  vlc.playlist.add("");
+  vlc.playlist.add("");
+  vlc.playlist.add("");
+  vlc.playlist.add("http://10.134.15.103:8866/live?channel=56");
+  vlc.playlist.add("http://10.134.15.103:8866/live?channel=57");
+  vlc.playlist.add("http://10.134.15.103:8866/live?channel=8");
+  vlc.playlist.add("http://10.134.15.103:8866/live?channel=9");
+  vlc.playlist.add("");
+  vlc.playlist.add("http://10.134.15.103:8866/live?channel=11");
+  vlc.playlist.add("");
+  vlc.playlist.add("");
+  vlc.playlist.add("http://10.134.15.103:8866/live?channel=14");
+  vlc.playlist.add("http://10.134.15.103:8866/live?channel=15");
+  vlc.playlist.add("http://10.134.15.103:8866/live?channel=16");
+  vlc.playlist.add("http://10.134.15.103:8866/live?channel=17");
+  vlc.playlist.add("http://10.134.15.103:8866/live?channel=18");
+  vlc.playlist.add("");
+  vlc.playlist.add("http://10.134.15.103:8866/live?channel=20");
+  vlc.playlist.add("http://10.134.15.103:8866/live?channel=21");
+  vlc.playlist.add("http://10.134.15.103:8866/live?channel=31");
+
 
     function switchToRefuse() {
         accept.removeClass("button-selected");
