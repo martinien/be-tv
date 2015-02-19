@@ -159,6 +159,9 @@ $( document ).ready(function() {
                     if(show == 0) {
                         meteo();
                         $("#weather").show();
+                        setTimeout(function(){
+                            $("#weather").hide();
+                        }, 5000);
                         show = 1;
                     } else {
                         $("#weather").hide();
