@@ -1,4 +1,4 @@
-define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather", "door"], function(io, tv, light, init, modal, player, weather, door) {
+define(["socketio", "tv", "light", "init", "player", "weather", "door"], function(io, tv, light, init, player, weather, door) {
   var socket = init.socket,
     timer = 0,
     timer2 = Math.floor(Date.now() / 1000),
@@ -41,14 +41,7 @@ define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather", "
       }
 
       state = STATE.ALARM;
-      $('#basic-modal-content').modal({
-        onClose: function() {
-          vlc.playlist.playItem(currentChannel);
-          $.modal.close();
-          state = previousState;
-          light.stopBlink('65000');
-        }
-      });
+      $("#alarm").show();
     }
 
   });
@@ -132,7 +125,9 @@ define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather", "
         break
       case "OK":
         if (state === STATE.ALARM) {
-          $.modal.close();
+          $("#alarm").hide();
+          vlc.playlist.playItem(currentChannel);
+          light.stopBlink('65000');
         } else if (state === STATE.BELL) {
           door.validateChoice();
         }

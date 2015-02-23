@@ -24,15 +24,12 @@ define([], function() {
     getHTML: function(command, uri, json) {
       if (window.XMLHttpRequest) {
         var http = new XMLHttpRequest();
-        console.log(uri);
         http.open(command, uri, true);
 
         http.onreadystatechange = function() {
           if (http.readyState == 4) {
             if (http.status == 200) {
 
-            } else {
-              //console.log("Error " + http.status);
             }
           }
         }
