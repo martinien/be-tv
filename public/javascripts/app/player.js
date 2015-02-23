@@ -3,10 +3,10 @@ define(["init"],function(init) {
     undefined, 11, undefined, undefined, 14, 15, 16, 17, 18, undefined, 20,
     21, 31];
 
-    for (channel in channels){
+    for (id in channels){
       var result;
       if(channel !== undefined){
-        result = "http://10.134.15.103:8866/live?channel=" + channel;
+        result = "http://10.134.15.103:8866/live?channel=" + channels[id];
       }
       else{
         result = "";
