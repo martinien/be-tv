@@ -1,4 +1,4 @@
-define(["jquery"], function($) {
+define(["jquery", "door"], function($, door) {
 
   /*$.fn.slideFadeToggle = function(speed, easing, callback){
      this.animate({
@@ -59,7 +59,7 @@ define(["jquery"], function($) {
     },
 
     validateChoice : function() {
-      getActiveButton() === accept ? openDoor() : closeDoor();
+      getActiveButton() === accept ? door.openDoor() : door.closeDoor();
       this.hideEntrance();
     },
 

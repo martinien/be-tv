@@ -2,7 +2,7 @@ define(function () {
 
   return {
 
-    function openDoor() {
+    openDoor: function() {
 
       jsonString = '{"hue": 25500,"on": true,"bri": 10}';
       lightUrl = "http://10.134.15.60/api/2fe88a512405b6771b4ed88524094ab/lights/1/state";
@@ -11,9 +11,9 @@ define(function () {
       getHTML('PUT');
 
       socket.emit("ouverturePorte");
-    }
+    },
 
-    function closeDoor() {
+    closeDoor: function() {
 
 
       jsonString = '{"hue": 0,"on": true,"bri": 10}';

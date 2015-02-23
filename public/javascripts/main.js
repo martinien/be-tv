@@ -12,7 +12,8 @@ requirejs.config({
         weather: 'app/weather',
         player: 'app/player',
         socket: 'app/socket',
-        utils: 'app/utils'
+        utils: 'app/utils',
+        door: 'app/door'
     }
 });
 
