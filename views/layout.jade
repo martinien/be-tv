@@ -3,14 +3,13 @@ html
   head
     title= title
     link(rel='shortcut icon', type='image/png', href='/favicon.png')
-    link(rel='stylesheet', href='/fonts/font-awesome-4.2.0/css/font-awesome.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/modal.css')
     link(rel='stylesheet', href='/stylesheets/widget.css')
   body
     block content
 
-  script(data-main='scripts/app' src='javascripts/lib/require.js')
+  script(data-main='javascripts/main' src='javascripts/lib/require.js')
   //  script(src='javascripts/lib/jquery-2.1.1.min.js')
     script(src='javascripts/lib/jquery.simplemodal.js')
     script(src='javascripts/lib/socket.io-1.2.1.min.js')
