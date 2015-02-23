@@ -86,7 +86,6 @@ define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather", "
           }
           timer2 = Math.floor(Date.now() / 1000);
         }
-
         break;
       case "BLUE":
         if (show == 0) {

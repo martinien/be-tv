@@ -25,7 +25,6 @@ define(["light", "init"], function(light, init) {
       accept.className = 'button button-success';
       refuse.className = 'button button-error';
       this.entranceShown = false;
-
     },
 
     switchToRefuse: function() {
