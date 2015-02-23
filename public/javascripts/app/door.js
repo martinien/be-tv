@@ -14,7 +14,7 @@ define(["light", "init"], function(light, init) {
       if (!this.entranceShown) {
         entrance.setAttribute('src', 'http://cs.isen.fr/camera/mjpg/video.mjpg');
         notification.style.display = 'block';
-        accept.setAttribute("class", 'button button-selected');
+        accept.setAttribute("class", 'button button-success button-selected');
         this.entranceShown = true;
       }
     },
@@ -22,22 +22,20 @@ define(["light", "init"], function(light, init) {
     hideEntrance: function() {
       entrance.removeAttribute('src');
       notification.style.display = 'none';
-      accept.className = 'button-success';
-      refuse.className = 'button-error';
+      accept.className = 'button button-success';
+      refuse.className = 'button button-error';
       this.entranceShown = false;
 
     },
 
     switchToRefuse: function() {
-      console.log("refuse");
-      accept.className = "button";
-      refuse.className += "button-selected";
+      accept.className = "button button-success";
+      refuse.className = "button button-error button-selected";
     },
 
     switchToAccept: function() {
-      console.log("accept");
-      refuse.className = "button";
-      accept.className += "button-selected";
+      refuse.className = "button button-error";
+      accept.className = "button button-success button-selected";
     },
 
     validateChoice: function() {

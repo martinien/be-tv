@@ -29,12 +29,13 @@ body {
   top: 0;
   right: 0;
   z-index: 100;
-  height: 600px;
-  width: 650px;
+  height: 50%;
+  width: 30%;
   background-color: #7f8c8d;
-  border: 5px solid #bdc3c7;
-  border-radius: 20px;
-  overflow: hidden;
+  border: 5px solid rgb(66, 62, 62);
+  border-radius: 30px;
+  overflow:hidden;
+  margin: 1%;
 }
 #entrance {
   margin: 0 0 0 -620px;
@@ -52,20 +53,23 @@ body {
 }
 .button-selected {
   border: 5px solid #2980b9;
+  font-weight: 900;
 }
 #accept, #refuse {
   width: 50%;
-  height: 65px;
-  cursor: pointer;
+  height: 10%;
+  cursor:pointer;
   position: absolute;
-  bottom: 0;
+  bottom:0;
+  font-size: x-large;
+  border: 10px;
+  border-color: black;
+  border-radius: 0px;
 }
 #accept {
-  border-bottom-left-radius: 15px;
   left: 0;
 }
 #refuse {
-  border-bottom-right-radius: 15px;
   right: 0;
 }
 #container {

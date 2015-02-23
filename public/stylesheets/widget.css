@@ -8,16 +8,17 @@
 #weather {
   padding: 1%;
   z-index: 100;
-  background-color: #1192d3;
-  border: 5px solid white;
+  background-color: rgba(82, 130, 165, 0.81);
+  border: 5px solid rgb(66, 62, 62);
   border-radius: 20px;
   overflow: hidden;
   position: absolute;
-  margin-left: 5%;
-  margin-top: 5%;
   text-align: center;
   text-transform: uppercase;
   font: 13px 'Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  margin: 1%;
+  top: 0;
+  right: 0;
 }
 i {
   color: #fff;

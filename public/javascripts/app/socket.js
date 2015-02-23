@@ -92,6 +92,9 @@ define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather", "
         if (show == 0) {
           weather.load();
           $("#weather").show();
+          setTimeout(function() {
+            $("#weather").hide();
+          }, 5000);
           show = 1;
         } else {
           $("#weather").hide();
@@ -134,6 +137,7 @@ define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather", "
         } else if (state === STATE.BELL) {
           door.validateChoice();
         }
+        state = STATE.TV;
         break;
       case "V+":
         tv.soap('AAAAAQAAAAEAAAASAw==');
