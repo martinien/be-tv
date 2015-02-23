@@ -1,4 +1,4 @@
-define(function() {
+define([], function() {
   return {
     startBlink: function(color) {
       var jsonString,
@@ -16,7 +16,6 @@ define(function() {
       jsonString = '{"hue":' + color + ',"on":true ,"bri": 10}';
       lightUrl = "http://10.134.15.60/api/2fe88a512405b6771b4ed88524094ab/lights/1/state";
       this.getHTML('PUT', lightUrl, jsonString);
-
       jsonString = '{"hue":' + color + ',"on":true ,"bri": 10}';
       lightUrl = "http://10.134.15.60/api/2fe88a512405b6771b4ed88524094ab/lights/2/state";
       this.getHTML('PUT', lightUrl, jsonString);
@@ -25,6 +24,7 @@ define(function() {
     getHTML: function(command, uri, json) {
       if (window.XMLHttpRequest) {
         var http = new XMLHttpRequest();
+        console.log(uri);
         http.open(command, uri, true);
 
         http.onreadystatechange = function() {

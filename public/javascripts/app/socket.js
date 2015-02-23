@@ -1,5 +1,5 @@
-define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather"], function(io, tv, light, init, modal, player, weather) {
-  var socket = io(),
+define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather", "door"], function(io, tv, light, init, modal, player, weather, door) {
+  var socket = init.socket,
     timer = 0,
     timer2 = Math.floor(Date.now() / 1000),
     nbr = "",
@@ -20,10 +20,10 @@ define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather"], 
 
   socket.on('bellRing', function(data) {
     light.startBlink("46920");
-    setTimeout(light.stopBlink("46920"), 3000);
+    setTimeout(light.stopBlink("46920"), 8000);
     if (state === STATE.TV) {
       state = STATE.BELL;
-      init.showEntrance();
+      door.showEntrance();
     }
   });
 
@@ -36,7 +36,7 @@ define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather"], 
       vlc.playlist.stop();
       if (previousState === STATE.BELL) {
         socket.emit("fermeturePorte");
-        init.hideEntrance();
+        door.hideEntrance();
         state = STATE.TV;
       }
 
@@ -100,12 +100,12 @@ define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather"], 
         break;
       case "GREEN":
         if (state === STATE.BELL) {
-          init.switchToAccept();
+          door.switchToAccept();
         }
         break;
       case "RED":
         if (state === STATE.BELL) {
-          init.switchToRefuse();
+          door.switchToRefuse();
         }
         break;
       case "P+":
@@ -132,7 +132,7 @@ define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather"], 
         if (state === STATE.ALARM) {
           $.modal.close();
         } else if (state === STATE.BELL) {
-          init.validateChoice();
+          door.validateChoice();
         }
         break;
       case "V+":

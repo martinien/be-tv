@@ -1,21 +1,52 @@
-define(function() {
+define(["light", "init"], function(light, init) {
   return {
     openDoor: function() {
-      jsonString = '{"hue": 25500,"on": true,"bri": 10}';
-      lightUrl = "http://10.134.15.60/api/2fe88a512405b6771b4ed88524094ab/lights/1/state";
-      getHTML('PUT');
-      lightUrl = "http://10.134.15.60/api/2fe88a512405b6771b4ed88524094ab/lights/2/state";
-      getHTML('PUT');
-      socket.emit("ouverturePorte");
+      light.stopBlink(25500);
+      init.socket.emit("ouverturePorte");
     },
 
     closeDoor: function() {
-      jsonString = '{"hue": 0,"on": true,"bri": 10}';
-      lightUrl = "http://10.134.15.60/api/2fe88a512405b6771b4ed88524094ab/lights/1/state";
-      getHTML('PUT');
-      lightUrl = "http://10.134.15.60/api/2fe88a512405b6771b4ed88524094ab/lights/2/state";
-      getHTML('PUT');
-      socket.emit("fermeturePorte");
+      light.stopBlink(0);
+      init.socket.emit("fermeturePorte");
+    },
+
+    showEntrance: function() {
+      if (!this.entranceShown) {
+        entrance.setAttribute('src', 'http://cs.isen.fr/camera/mjpg/video.mjpg');
+        notification.style.display = 'block';
+        accept.setAttribute("class", 'button button-selected');
+        this.entranceShown = true;
+      }
+    },
+
+    hideEntrance: function() {
+      entrance.removeAttribute('src');
+      notification.style.display = 'none';
+      accept.className = 'button-success';
+      refuse.className = 'button-error';
+      this.entranceShown = false;
+
+    },
+
+    switchToRefuse: function() {
+      console.log("refuse");
+      accept.className = "button";
+      refuse.className += "button-selected";
+    },
+
+    switchToAccept: function() {
+      console.log("accept");
+      refuse.className = "button";
+      accept.className += "button-selected";
+    },
+
+    validateChoice: function() {
+      this.getActiveButton() === accept ? this.openDoor() : this.closeDoor();
+      this.hideEntrance();
+    },
+
+    getActiveButton: function() {
+      return $('#accept').hasClass("button-selected") ? accept : refuse;
     }
   }
 });
