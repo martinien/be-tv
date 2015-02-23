@@ -1,5 +1,4 @@
 requirejs.config({
-
   paths: {
     jquery: 'lib/jquery',
     jqueryweather: 'lib/jquery-simpleWeather',
@@ -19,10 +18,9 @@ requirejs.config({
 
 requirejs(['domReady'],
   function(domReady) {
-
     domReady(function() {
       require(['init', 'socket'], function() {
         return;
       });
     })
-  });
+});

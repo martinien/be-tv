@@ -1,9 +1,7 @@
 define(["jquery", "jqueryweather"],
   function($, simpleWeather) {
-
     return {
       load: function() {
-
         $.simpleWeather({
           woeid: '608105', //2357536
           location: '',

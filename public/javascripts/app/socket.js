@@ -1,7 +1,4 @@
 define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather"], function(io, tv, light, init, modal, player, weather) {
-
-  //return {
-
   var socket = io(),
     timer = 0,
     timer2 = Math.floor(Date.now() / 1000),
@@ -21,7 +18,6 @@ define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather"], 
     state = STATE.TV,
     vlc = init.vlc;
 
-
   socket.on('bellRing', function(data) {
     light.startBlink("46920");
     setTimeout(light.stopBlink("46920"), 3000);
@@ -30,7 +26,6 @@ define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather"], 
       init.showEntrance();
     }
   });
-
 
   socket.on('alarm', function(data) {
     light.startBlink("65000");
@@ -57,8 +52,6 @@ define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather"], 
     }
 
   });
-
-
 
   socket.on('cmd', function(data) {
     switch (data) {
@@ -152,9 +145,5 @@ define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather"], 
         tv.soap('AAAAAQAAAAEAAAAUAw==');
         break;
     }
-
   });
-
-  //});
-
 });

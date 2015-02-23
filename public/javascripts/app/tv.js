@@ -1,7 +1,5 @@
 define(function() {
-
   return {
-
     soap: function(CMD) {
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.open('POST', 'http://10.134.15.110/sony/IRCC', true);
@@ -23,7 +21,5 @@ define(function() {
       xmlhttp.setRequestHeader('Content-Type', 'text/xml');
       xmlhttp.send(sr);
     }
-
   }
-
 });

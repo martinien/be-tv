@@ -1,7 +1,5 @@
 define(function() {
-
   return {
-
     startBlink: function(color) {
       var jsonString,
         lightUrl;
@@ -44,5 +42,4 @@ define(function() {
       return;
     }
   }
-
 });
