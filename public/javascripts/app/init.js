@@ -10,12 +10,12 @@ define(["jquery", "door", "weather"], function($, door, weather) {
 
   return {
 
-    notification : $("#notification"),
-    entrance : $("#entrance"),
-    accept : $('#accept'),
-    refuse : $('#refuse'),
+    notification: $("#notification"),
+    entrance: $("#entrance"),
+    accept: $('#accept'),
+    refuse: $('#refuse'),
     vlc: $("#vlc")[0],
-    entranceShown : false,
+    entranceShown: false,
 
 
     showEntrance: function() {
@@ -58,7 +58,7 @@ define(["jquery", "door", "weather"], function($, door, weather) {
       accept.className += "button-selected";
     },
 
-    validateChoice : function() {
+    validateChoice: function() {
       getActiveButton() === accept ? door.openDoor() : door.closeDoor();
       this.hideEntrance();
     },
@@ -68,7 +68,6 @@ define(["jquery", "door", "weather"], function($, door, weather) {
     }
 
 
-    }
-
   }
-);
+
+});
