@@ -1,4 +1,4 @@
-define(["jquery", "door"], function($, door) {
+define(["jquery", "door", "weather"], function($, door, weather) {
 
   /*$.fn.slideFadeToggle = function(speed, easing, callback){
      this.animate({
@@ -6,7 +6,7 @@ define(["jquery", "door"], function($, door) {
     height: 'toggle'
   }, speed, easing, callback);
 };*/
-
+  weather.load();
 
   return {
 
