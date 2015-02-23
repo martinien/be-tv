@@ -1,4 +1,4 @@
-define(["socketio", "tv", "light", "init", "jquerymodal", "player"], function(io, tv, light, init, modal, player) {
+define(["socketio", "tv", "light", "init", "jquerymodal", "player", "weather"], function(io, tv, light, init, modal, player, weather) {
 
       //return {
 
@@ -97,6 +97,7 @@ define(["socketio", "tv", "light", "init", "jquerymodal", "player"], function(io
               break;
             case "BLUE":
               if (show == 0) {
+                weather.load();
                 $("#weather").show();
                 show = 1;
               } else {
