@@ -1,5 +1,11 @@
-define(function() {
+define([], function() {
   return {
+    STATE: {
+      TV: 1,
+      BELL: 2,
+      ALARM: 3
+    },
+    currentState: 1,
     soap: function(CMD) {
       var xmlhttp = new XMLHttpRequest();
       xmlhttp.open('POST', 'http://10.134.15.110/sony/IRCC', true);

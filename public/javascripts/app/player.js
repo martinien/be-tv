@@ -1,4 +1,4 @@
-define(["init"], function(init) {
+define(["jquery", "init"], function($, init) {
   var channels = [51, 52, undefined, undefined, undefined, 56, 57, 8, 9,
     undefined, 11, undefined, undefined, 14, 15, 16, 17, 18, undefined, 20,
     21, 31];
@@ -9,6 +9,12 @@ define(["init"], function(init) {
     } else {
       result = "";
     }
-    init.vlc.playlist.add(result);
+    $("#vlc")[0].playlist.add(result);
+  }
+  return {
+    vlc: $("#vlc")[0],
+    currentChannel: 0,
+    channelMin: 0,
+    channelMax: 22
   }
 })

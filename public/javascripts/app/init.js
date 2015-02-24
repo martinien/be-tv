@@ -5,7 +5,8 @@ define(["jquery", "socketio"], function($, io) {
     accept: $('#accept'),
     refuse: $('#refuse'),
     alarm: $("#alarm"),
-    vlc: $("#vlc")[0],
+    weather: $("#weather"),
+    remote: $("#channel"),
     entranceShown: false,
     socket : io()
   }

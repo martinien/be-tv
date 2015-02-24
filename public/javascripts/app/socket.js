@@ -1,65 +1,28 @@
-define(["socketio", "tv", "light", "init", "player", "weather", "door"], function(io, tv, light, init, player, weather, door) {
-  var socket = init.socket,
-    timer = 0,
-    timer2 = Math.floor(Date.now() / 1000),
-    nbr = "",
-    show = 0,
-
-    currentChannel = 1,
-    channelMin = 1,
-    channelMax = 22,
-
-    STATE = {
-      TV: 1,
-      BELL: 2,
-      ALARM: 3
-    },
-
-    state = STATE.TV,
-    vlc = init.vlc;
-
-  init.accept.click(function() {
-    door.switchToAccept();
-    door.validateChoice();
-  });
-
-  init.refuse.click(function() {
-    door.switchToRefuse();
-    door.validateChoice();
-  });
-
-  init.alarm.click(function() {
-    init.alarm.hide();
-    vlc.playlist.playItem(currentChannel);
-    light.stopBlink('65000');
-  });
+define(["tv", "light", "init", "player", "weather", "door"], function(tv, light, init, player, weather, door) {
+  var socket = init.socket;
 
   socket.on('bellRing', function(data) {
     light.startBlink("46920");
     setTimeout(light.stopBlink("46920"), 8000);
-    if (state === STATE.TV) {
-      state = STATE.BELL;
+    if (tv.currentState === tv.STATE.TV) {
+      tv.currentState = tv.STATE.BELL;
       door.showEntrance();
     }
   });
 
   socket.on('alarm', function(data) {
     light.startBlink("65000");
-
-    if (state !== STATE.ALARM) {
-      var previousState = state;
-
-      vlc.playlist.stop();
-      if (previousState === STATE.BELL) {
+    if (tv.currentState !== tv.STATE.ALARM) {
+      var previousState = tv.currentState;
+      player.vlc.playlist.stop();
+      if (previousState === tv.STATE.BELL) {
         socket.emit("fermeturePorte");
         door.hideEntrance();
-        state = STATE.TV;
+        tv.currentState = tv.STATE.TV;
       }
-
-      state = STATE.ALARM;
-      $("#alarm").show();
+      tv.currentState = tv.STATE.ALARM;
+      init.alarm.show();
     }
-
   });
 
   socket.on('cmd', function(data) {
@@ -74,89 +37,34 @@ define(["socketio", "tv", "light", "init", "player", "weather", "door"], functio
       case "8":
       case "9":
       case "0":
-        if (Math.floor(Date.now() / 1000) - timer2 > 1) {
-          if (Math.floor(Date.now() / 1000) - timer < 4) {
-            nbr = nbr + data;
-            $("#channel h1").html(nbr);
-          } else {
-            timer = 0;
-            nbr = "";
-          }
-          if (timer == 0) {
-            nbr = nbr + data;
-            $("#channel").show();
-            $("#channel h1").html(nbr);
-            timer = Math.floor(Date.now() / 1000);
-            setTimeout(function() {
-              $("#channel").hide();
-              vlc.playlist.playItem(parseInt(nbr));
-              currentChannel = parseInt(nbr);
-            }, 3000);
-          }
-          timer2 = Math.floor(Date.now() / 1000);
-        }
+        init.remote.trigger('num', data);
         break;
       case "BLUE":
-        if (show == 0) {
-          weather.load();
-          $("#weather").show();
-          setTimeout(function() {
-            $("#weather").hide();
-          }, 5000);
-          show = 1;
-        } else {
-          $("#weather").hide();
-          show = 0;
-        }
+        init.remote.trigger('blue', data);
         break;
       case "GREEN":
-        if (state === STATE.BELL) {
-          door.switchToAccept();
-        }
+        init.remote.trigger('green', data);
         break;
       case "RED":
-        if (state === STATE.BELL) {
-          door.switchToRefuse();
-        }
+        init.remote.trigger('red', data);
         break;
       case "P+":
-        if (state === STATE.TV) {
-          if (currentChannel === channelMax) {
-            currentChannel = channelMin;
-          } else {
-            currentChannel++;
-          }
-          vlc.playlist.playItem(currentChannel);
-        }
+        init.remote.trigger('p+', data);
         break;
       case "P-":
-        if (state === STATE.TV) {
-          if (currentChannel === channelMin) {
-            currentChannel = channelMax;
-          } else {
-            currentChannel--;
-          }
-          vlc.playlist.playItem(currentChannel);
-        }
+        init.remote.trigger('p-', data);
         break
       case "OK":
-        if (state === STATE.ALARM) {
-          $("#alarm").hide();
-          vlc.playlist.playItem(currentChannel);
-          light.stopBlink('65000');
-        } else if (state === STATE.BELL) {
-          door.validateChoice();
-        }
-        state = STATE.TV;
+        init.remote.trigger('ok', data);
         break;
       case "V+":
-        tv.soap('AAAAAQAAAAEAAAASAw==');
+        init.remote.trigger('v+', data);
         break;
       case "V-":
-        tv.soap('AAAAAQAAAAEAAAATAw==');
+        init.remote.trigger('v-', data);
         break;
       case "MUTE":
-        tv.soap('AAAAAQAAAAEAAAAUAw==');
+        init.remote.trigger('mute', data);
         break;
     }
   });
