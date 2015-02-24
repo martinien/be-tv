@@ -87,11 +87,12 @@ body {
   border: 15px solid #444;
   left: 20%;
   top: 20%;
+  font-family: Arial;
 }
 
 #alarm h1{
   height: 10%;
-  color: #e74c3c;
+  color: #EC2814;
   background-color: #333;
   font-size: 5em;
   text-align: center;
@@ -103,9 +104,9 @@ body {
   position: absolute;
   bottom: 5px;
   font-size: 2em;
-  border: 3px solid #84b8d9;
+  border: 3px solid white;
   background-color: #333;
-  color: #84b8d9;
+  color: white;
   left:33%;
 }
 
@@ -114,7 +115,7 @@ body {
   margin-right: 1%;
 }
 #alarm p {
-  color: #84b8d9;
+  color: white;
   font-size: 3em;
   margin-top: 2em;
 }

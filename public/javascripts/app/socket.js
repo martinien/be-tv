@@ -18,6 +18,22 @@ define(["socketio", "tv", "light", "init", "player", "weather", "door"], functio
     state = STATE.TV,
     vlc = init.vlc;
 
+  init.accept.click(function() {
+    door.switchToAccept();
+    door.validateChoice();
+  });
+
+  init.refuse.click(function() {
+    door.switchToRefuse();
+    door.validateChoice();
+  });
+
+  init.alarm.click(function() {
+    init.alarm.hide();
+    vlc.playlist.playItem(currentChannel);
+    light.stopBlink('65000');
+  });
+
   socket.on('bellRing', function(data) {
     light.startBlink("46920");
     setTimeout(light.stopBlink("46920"), 8000);
