@@ -20,16 +20,19 @@ requirejs.config({
 requirejs(['domReady'],
   function(domReady) {
     domReady(function() {
-      require(['init', 'socket', 'utils', 'remote', 'door', 'light', 'player'], function(init, socket, utils, remote, door, light, player) {
+      require(['init', 'socket', 'utils', 'remote', 'door', 'light', 'player', 'tv'], function(init, socket, utils, remote, door, light, player, tv) {
         init.accept.click(function() {
           door.switchToAccept();
           door.validateChoice();
+          tv.currentState = tv.STATE.TV;
         });
         init.refuse.click(function() {
           door.switchToRefuse();
           door.validateChoice();
+          tv.currentState = tv.STATE.TV;
         });
         init.alarm.click(function() {
+          tv.currentState = tv.STATE.TV;
           init.alarm.hide();
           player.vlc.playlist.playItem(player.currentChannel);
           light.stopBlink('65000');

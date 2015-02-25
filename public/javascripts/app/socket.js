@@ -8,9 +8,11 @@ define(["tv", "light", "init", "player", "weather", "door"], function(tv, light,
   socket.on('bellRing', function(data) {
     light.startBlink("46920");
     setTimeout(light.stopBlink("46920"), 8000);
+    console.log(tv.currentState);
     if (tv.currentState === tv.STATE.TV) {
       tv.currentState = tv.STATE.BELL;
       door.showEntrance();
+      console.log("ok");
     }
   });
 
