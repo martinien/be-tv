@@ -1,6 +1,10 @@
 define(["tv", "light", "init", "player", "weather", "door"], function(tv, light, init, player, weather, door) {
   var socket = init.socket;
 
+  socket.on('face', function(data) {
+    init.face.html(data);
+  });
+
   socket.on('bellRing', function(data) {
     light.startBlink("46920");
     setTimeout(light.stopBlink("46920"), 8000);

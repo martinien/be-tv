@@ -7,6 +7,19 @@ body {
   position: relative;
   overflow: hidden;
 }
+#face {
+  margin-left: 30%;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10%;
+  font-size: -webkit-xxx-large;
+  font-weight: bold;
+  background-color: rgba(29, 219, 89, 0.78);
+  color: white;
+  padding-left: 5%;
+  padding-right: 5%;
+  border-radius: 20px;
+}
 #channel {
   position: absolute;
   top: 5%;

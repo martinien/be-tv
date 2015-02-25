@@ -20,6 +20,7 @@ define(["light", "init"], function(light, init) {
     },
 
     hideEntrance: function() {
+      init.face.html("");
       entrance.removeAttribute('src');
       notification.style.display = 'none';
       accept.className = 'button button-success';

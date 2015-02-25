@@ -7,6 +7,7 @@ define(["jquery", "socketio"], function($, io) {
     alarm: $("#alarm"),
     weather: $("#weather"),
     remote: $("#channel"),
+    face: $("#face"),
     entranceShown: false,
     socket : io()
   }
