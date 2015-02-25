@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var bell = require('./routes/bell');
 var cmd = require('./routes/cmd');
 var alarm = require('./routes/alarm');
+var face = require('./routes/face');
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use('/', routes);
 app.use('/bell', bell);
 app.use('/alarm', alarm);
 app.use('/cmd', cmd);
+app.use('/face', face);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
