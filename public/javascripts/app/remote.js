@@ -81,7 +81,7 @@ define(["init", "tv", "light", "door", "player", "weather"], function(init, tv, 
     } else if (tv.currentState === tv.STATE.BELL) {
       door.validateChoice();
     }
-    tv.currentStat = tv.STATE.TV;
+    tv.currentState = tv.STATE.TV;
   });
 
   init.remote.on('v-', function(event, param) {

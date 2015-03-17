@@ -3,6 +3,9 @@ define(["tv", "light", "init", "player", "weather", "door"], function(tv, light,
 
   socket.on('face', function(data) {
     init.face.html(data);
+    setTimeout(function() {
+      init.face.html("");
+    }, 5000);
   });
 
   socket.on('bellRing', function(data) {
