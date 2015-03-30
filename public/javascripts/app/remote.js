@@ -19,6 +19,15 @@ define(["init", "tv", "light", "door", "player", "weather"], function(init, tv, 
         timer = Math.floor(Date.now() / 1000);
         setTimeout(function() {
           $("#channel").hide();
+          // CSS SCALE POUR LES CHAINES BASSES DEFINITIONS
+          if($.inArray(parseInt(nbr), [15, 16, 17]) !==-1) {
+            // REGLAGLES BRAVIA FULLSCREEN
+            player.vlc.style.transform = "scaleX(1.45)";
+            player.vlc.style.marginLeft = "-31.5%";
+          } else {
+            player.vlc.style.transform = "scaleX(1)";
+            player.vlc.style.marginLeft = "0%";
+          }
           player.vlc.playlist.playItem(parseInt(nbr));
           player.currentChannel = parseInt(nbr);
         }, 3000);
