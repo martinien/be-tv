@@ -101,6 +101,7 @@ define(["init", "tv", "light", "door", "player", "weather"], function(init, tv, 
   });
 
   init.remote.on('ok', function(event, param) {
+    $("#menu").hide();
     if (tv.currentState === tv.STATE.ALARM) {
       init.alarm.hide();
       player.vlc.playlist.playItem(player.currentChannel);
