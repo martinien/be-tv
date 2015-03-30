@@ -133,3 +133,41 @@ body {
   font-size: 3em;
   margin-top: 2em;
 }
+
+@font-face {
+    font-family: 'LearningCurveProRegular';
+    src: url('../fonts/LearningCurve_OT-webfont.eot');
+    src: url('../fonts/LearningCurve_OT-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/LearningCurve_OT-webfont.woff') format('woff'),
+         url('../fonts/LearningCurve_OT-webfont.ttf') format('truetype'),
+         url('../fonts/LearningCurve_OT-webfont.svg#LearningCurveProRegular') format('svg');
+}
+
+#menu {
+  background-image:url('../images/paper-background.jpg');
+  background-position:left top;
+  opacity: 0.8;
+  background-size: 100% 100%;
+  font-family: 'LearningCurveProRegular', Arial, serif;
+  position: fixed;
+  height: 80%;
+  width: 60%;
+  border-radius: 5px;
+  left: 20%;
+  top: 10%;
+  font-size: x-large;
+}
+#menu1 {
+  width: 45%;
+  height: 80%;
+  float: left;
+  margin-left: 3%;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.21);
+}
+#menu2 {
+  width: 45%;
+  height: 80%;
+  float: right;
+  text-align: center;
+}

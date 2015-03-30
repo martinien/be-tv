@@ -51,6 +51,24 @@ define(["init", "tv", "light", "door", "player", "weather"], function(init, tv, 
     }
   });
 
+  init.remote.on('yellow', function(event, param) {
+    if($("#menu").is(":visible")) {
+      $("#menu").hide();
+    } else {
+      $("#menu").show();
+    }
+  });
+
+  init.remote.on('left', function(event, param) {
+    $("#menu1").css("background-color","rgba(255, 255, 255, 0.21)");
+    $("#menu2").css("background-color","");
+  });
+
+  init.remote.on('right', function(event, param) {
+    $("#menu2").css("background-color","rgba(255, 255, 255, 0.21)");
+    $("#menu1").css("background-color","");
+  });
+
   init.remote.on('p+', function(event, param) {
     if (tv.currentState === tv.STATE.TV) {
       if (player.currentChannel === player.channelMax) {
