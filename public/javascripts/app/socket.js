@@ -57,6 +57,15 @@ define(["tv", "light", "init", "player", "weather", "door"], function(tv, light,
       case "RED":
         init.remote.trigger('red', data);
         break;
+      case "YELLOW":
+        init.remote.trigger('yellow', data);
+        break;
+      case "LEFT":
+        init.remote.trigger('left', data);
+        break;
+      case "RIGHT":
+        init.remote.trigger('right', data);
+        break;
       case "P+":
         init.remote.trigger('p+', data);
         break;

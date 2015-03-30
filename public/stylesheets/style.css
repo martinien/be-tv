@@ -146,7 +146,7 @@ body {
 #menu {
   background-image:url('../images/paper-background.jpg');
   background-position:left top;
-  opacity: 0.8;
+  opacity: 0.9;
   background-size: 100% 100%;
   font-family: 'LearningCurveProRegular', Arial, serif;
   position: fixed;
@@ -155,7 +155,7 @@ body {
   border-radius: 5px;
   left: 20%;
   top: 10%;
-  font-size: x-large;
+  font-size: xx-large;
 }
 #menu1 {
   width: 45%;
@@ -163,11 +163,11 @@ body {
   float: left;
   margin-left: 3%;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.21);
 }
 #menu2 {
   width: 45%;
   height: 80%;
+  margin-right: 3%;
   float: right;
   text-align: center;
 }
