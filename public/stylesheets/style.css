@@ -202,12 +202,18 @@ body {
 #incoming-call {
   text-align: center;
   background: black;
+  opacity: 0.9;
+  padding: 2%;
+  margin-top: 25%;
+  font-size: xx-large;  
 }
 #answer {
   padding: 1%;
   margin: 1%;
+  font-size: inherit;
 }
 #refuse-call {
   padding: 1%;
   margin: 1%;
+  font-size: inherit;
 }
