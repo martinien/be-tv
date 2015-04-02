@@ -1,4 +1,4 @@
-define(["jquery", "socketio"], function($, io) {
+define(["jquery", "socketio", "peer"], function($, io) {
   return {
     notification: $("#notification"),
     entrance: $("#entrance"),
@@ -9,6 +9,7 @@ define(["jquery", "socketio"], function($, io) {
     remote: $("#channel"),
     face: $("#face"),
     entranceShown: false,
-    socket : io()
+    socket : io(),
+    peer : new Peer('tv', {host: 'localhost', port: 9000, path: '/peerjs'})
   }
 });

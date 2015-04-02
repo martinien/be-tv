@@ -4,6 +4,7 @@ requirejs.config({
     jqueryweather: 'lib/jquery-simpleWeather',
     jquerymodal: 'lib/jquery-simpleModal',
     socketio: 'lib/socket-io',
+    peer: 'lib/peer',
     domReady: 'lib/domReady',
     init: 'app/init',
     light: 'app/light',
@@ -13,14 +14,15 @@ requirejs.config({
     socket: 'app/socket',
     utils: 'app/utils',
     door: 'app/door',
-    remote: 'app/remote'
+    remote: 'app/remote',
+    phone: 'app/phone'
   }
 });
 
 requirejs(['domReady'],
   function(domReady) {
     domReady(function() {
-      require(['init', 'socket', 'utils', 'remote', 'door', 'light', 'player', 'tv'], function(init, socket, utils, remote, door, light, player, tv) {
+      require(['init', 'socket', 'utils', 'remote', 'door', 'light', 'player', 'tv', 'phone'], function(init, socket, utils, remote, door, light, player, tv) {
         init.accept.click(function() {
           door.switchToAccept();
           door.validateChoice();

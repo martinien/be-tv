@@ -15,6 +15,7 @@
     "jade": "~1.6.0",
     "method-override": "~2.3.1",
     "socket.io": "~1.2.1",
-    "xmlhttprequest": "~1.7.0"
+    "xmlhttprequest": "~1.7.0",
+    "peer": "latest"
   }
 }

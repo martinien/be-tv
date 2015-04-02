@@ -1,0 +1,42 @@
+#call {
+  border: 0;
+  padding: 1%;
+  width: 48%;
+  bottom: 0;
+  font-size: x-large;
+  margin: 1%;
+  background: yellowgreen;
+  font-weight: bolder;
+  color: white;
+}
+#stop {
+  border: 0;
+  padding: 1%;
+  width: 48%;
+  bottom: 0;
+  font-size: x-large;
+  font-weight: bolder;
+  color: white;
+  margin: 1%;
+  background: firebrick;
+}
+#phone {
+  margin: 1%;
+  position: fixed;
+  margin-left: 25%;
+}
+#tv-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#my-video {
+  width: 20%;
+  position: relative;
+  z-index: 10;
+  left: 0;
+  border: 5px solid white;
+  border-radius: 10px;
+  margin-left: 75%;
+  margin-top: 53%;
+}

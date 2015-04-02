@@ -7,6 +7,9 @@ block content
     embed#vlc(type='application/x-vlc-plugin', pluginspage='http://www.videolan.org', text='Loading...', autoplay='yes', loop='no', target='http://127.0.0.1:8866/live?channel=51', windowless='true', z-index='-1', controls='false', branding='false', width='100%', height='100%')
     object(classid='clsid:9BE31822-FDAD-461B-AD51-BE1D1C159921', codebase='http://download.videolan.org/pub/videolan/vlc/last/win32/axvlc.cab', style='display:none;')
 
+  #phone
+    video(id='their-video', autoplay)
+    video(id='my-video', muted='true', autoplay)
 
   #notification(style="display:none")
     img#entrance

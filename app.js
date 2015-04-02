@@ -5,11 +5,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var PeerServer = require('peer').PeerServer;
+var server = PeerServer({port: 9000, path: '/peerjs'});
+server.listen();
+
 var routes = require('./routes/index');
 var bell = require('./routes/bell');
 var cmd = require('./routes/cmd');
 var alarm = require('./routes/alarm');
 var face = require('./routes/face');
+var phone = require('./routes/phone');
 
 var app = express();
 
@@ -32,6 +37,7 @@ app.use('/bell', bell);
 app.use('/alarm', alarm);
 app.use('/cmd', cmd);
 app.use('/face', face);
+app.use('/call', phone);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
