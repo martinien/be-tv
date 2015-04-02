@@ -10,9 +10,9 @@ define(["init", "tv"], function(init, tv) {
     $('#phone').show();
     $('#incoming-call').show();
     init.call = call;
-    /*call.answer(window.localStream);
-    call.on('stream', function(stream){
-      $('#their-video').prop('src', URL.createObjectURL(stream));
-    });*/
-  })
+    call.on('close', function() {
+      $('#phone').hide();
+      tv.currentState = tv.STATE.TV;
+    });
+  });
 });
