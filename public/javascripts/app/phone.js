@@ -13,6 +13,7 @@ define(["init", "tv"], function(init, tv) {
     call.on('close', function() {
       $('#phone').hide();
       tv.currentState = tv.STATE.TV;
+      $('#their-video').prop('src', '');
     });
   });
 });
