@@ -199,3 +199,15 @@ body {
   margin-left: 72%;
   margin-top: 53%;
 }
+#incoming-call {
+  text-align: center;
+  background: black;
+}
+#answer {
+  padding: 1%;
+  margin: 1%;
+}
+#refuse-call {
+  padding: 1%;
+  margin: 1%;
+}

@@ -52,11 +52,22 @@ define(["init", "tv", "light", "door", "player", "weather"], function(init, tv, 
     if (tv.currentState === tv.STATE.BELL) {
       door.switchToAccept();
     }
+    if (tv.currentState === tv.STATE.PHONE) {
+      $('#incoming-call').hide();
+      init.call.answer(window.localStream);
+      init.call.on('stream', function(stream){
+        $('#their-video').prop('src', URL.createObjectURL(stream));
+      });
+    }
   });
 
   init.remote.on('red', function(event, param) {
     if (tv.currentState === tv.STATE.BELL) {
       door.switchToRefuse();
+    }
+    if(tv.currentState === tv.STATE.PHONE) {
+      $('#phone').hide();
+      tv.currentState = tv.STATE.TV;
     }
   });
 

@@ -9,7 +9,8 @@ define(["jquery", "socketio", "peer"], function($, io) {
     remote: $("#channel"),
     face: $("#face"),
     entranceShown: false,
-    socket : io(),
-    peer : new Peer('tv', {host: 'localhost', port: 9000, path: '/peerjs'})
+    socket: io(),
+    peer: new Peer('tv', {host: 'localhost', port: 9000, path: '/peerjs'}),
+    call: null,
   }
 });

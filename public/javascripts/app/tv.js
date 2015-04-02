@@ -3,7 +3,8 @@ define([], function() {
     STATE: {
       TV: 1,
       BELL: 2,
-      ALARM: 3
+      ALARM: 3,
+      PHONE: 4
     },
     currentState: 1,
     soap: function(CMD) {
