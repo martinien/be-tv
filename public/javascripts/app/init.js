@@ -12,6 +12,7 @@ define(["jquery", "socketio", "peer"], function($, io) {
     socket: io(),
     peer: new Peer('tv', {host: 'localhost', port: 9000, path: '/peerjs'}),
     call: null,
-    ringtone: new Audio('../audio/ringtone.ogg')
+    ringtone: new Audio('../../audio/ringtone.ogg'),
+    endOfCallSound: new Audio('../../audio/end_of_call.ogg')
   };
 });

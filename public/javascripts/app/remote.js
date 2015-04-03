@@ -67,6 +67,8 @@ define(["init", "tv", "light", "door", "player", "weather"], function(init, tv, 
       door.switchToRefuse();
     }
     if(tv.currentState === tv.STATE.PHONE) {
+      init.ringtone.pause();
+      init.endOfCallSound.play();
       init.call.close();
       $('#phone').hide();
       tv.currentState = tv.STATE.TV;

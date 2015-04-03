@@ -1,3 +1,3 @@
-@ECHO OFF
-node bin\www
-start chrome http://localhost:3000
+start cmd /c npm start
+timeout 3
+start chrome --kiosk "http://localhost:3000/" --use-fake-ui-for-media-stream
