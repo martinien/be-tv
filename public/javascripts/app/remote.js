@@ -53,6 +53,7 @@ define(["init", "tv", "light", "door", "player", "weather"], function(init, tv, 
       door.switchToAccept();
     }
     if (tv.currentState === tv.STATE.PHONE) {
+      init.ringtone.pause();
       $('#incoming-call').hide();
       init.call.answer(window.localStream);
       init.call.on('stream', function(stream){
