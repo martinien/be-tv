@@ -8,11 +8,11 @@ html
     script(src='javascripts/lib/jquery.js')
   body
     block content
-      button(id='call', type='button')
-        |CALL
-      button(id='stop', type='button')
-        |END
       #phone
         video(id='my-video', muted='true', autoplay)
-        video(id='tv-video', autoplay)
+        video(id='tv-video', width='640px', height='480px', autoplay, poster="/images/poster-tv.png")
+        button(id='call', type='button')
+          |CALL
+        button(id='stop', type='button')
+          |END
     script(src='javascripts/phone-call.js')
