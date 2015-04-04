@@ -1,0 +1,14 @@
+{
+  "name": "be-view",
+  "version": "0.0.1",
+  "homepage": "https://github.com/blabla4/be-view",
+  "license": "MIT",
+  "dependencies": {
+      "jquery": "latest",
+      "simpleWeather": "latest",
+      "peerjs": "latest",
+      "socket.io-client": "latest",
+      "requirejs": "latest",
+      "requirejs-domready": "latest"
+  }
+}

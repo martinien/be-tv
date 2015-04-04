@@ -1,11 +1,10 @@
 requirejs.config({
   paths: {
-    jquery: 'lib/jquery',
-    jqueryweather: 'lib/jquery-simpleWeather',
-    jquerymodal: 'lib/jquery-simpleModal',
-    socketio: 'lib/socket-io',
-    peer: 'lib/peer',
-    domReady: 'lib/domReady',
+    jquery: 'libs/jquery/dist/jquery.min',
+    jqueryweather: 'libs/simpleWeather/jquery.simpleWeather.min',
+    socketio: 'libs/socket.io-client/socket.io',
+    peer: 'libs/peerjs/peer.min',
+    domReady: 'libs/requirejs-domready/domReady',
     init: 'app/init',
     light: 'app/light',
     tv: 'app/tv',
@@ -41,5 +40,5 @@ requirejs(['domReady'],
         });
         return;
       });
-    })
+    });
 });
