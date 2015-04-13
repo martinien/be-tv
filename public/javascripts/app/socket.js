@@ -3,10 +3,10 @@ define(["tv", "light", "init", "player", "weather", "door"], function(tv, light,
 
   socket.on('swipe', function(dir) {
     if(dir == 'left') {
-      vlc.playlist.next();
+      player.vlc.playlist.next();
     }
     if(dir == 'right') {
-      vlc.playlist.prev();
+      player.vlc.playlist.prev();
     }
   });
 
