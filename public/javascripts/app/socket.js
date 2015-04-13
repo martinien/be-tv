@@ -1,6 +1,15 @@
 define(["tv", "light", "init", "player", "weather", "door"], function(tv, light, init, player, weather, door) {
   var socket = init.socket;
 
+  socket.on('swipe', function(dir) {
+    if(dir == 'left') {
+      vlc.playlist.next();
+    }
+    if(dir == 'right') {
+      vlc.playlist.prev();
+    }
+  });
+
   socket.on('face', function(data) {
     init.face.html(data);
     setTimeout(function() {
