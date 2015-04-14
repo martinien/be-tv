@@ -20,7 +20,7 @@ define(["init", "tv", "light", "door", "player", "weather"], function(init, tv, 
         setTimeout(function() {
           $("#channel").hide();
           // CSS SCALE POUR LES CHAINES BASSES DEFINITIONS
-          if($.inArray(parseInt(nbr), [15, 16, 17]) !==-1) {
+          if($.inArray(parseInt(nbr), [8, 9, 11, 14, 15, 16, 17]) !==-1) {
             // REGLAGLES BRAVIA FULLSCREEN
             player.vlc.style.transform = "scaleX(1.45)";
             player.vlc.style.marginLeft = "-31.5%";

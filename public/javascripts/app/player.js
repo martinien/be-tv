@@ -13,8 +13,9 @@ define(["jquery", "init"], function($, init) {
   }
   return {
     vlc: $("#vlc")[0],
-    currentChannel: 0,
+    currentChannel: 1,
     channelMin: 0,
-    channelMax: 22
+    channelMax: 22,
+    channels: channels
   }
 })

@@ -3,10 +3,26 @@ define(["tv", "light", "init", "player", "weather", "door"], function(tv, light,
 
   socket.on('swipe', function(dir) {
     if(dir == 'left') {
-      player.vlc.playlist.next();
+      player.currentChannel++;
+      while(player.channels[player.currentChannel-1] == undefined) {
+        player.currentChannel++;
+      }
+      player.vlc.playlist.playItem(player.currentChannel);
     }
     if(dir == 'right') {
-      player.vlc.playlist.prev();
+      player.currentChannel--;
+      while(player.channels[player.currentChannel-1] == undefined) {
+        player.currentChannel--;
+      }
+      player.vlc.playlist.playItem(player.currentChannel);
+    }
+    if($.inArray(player.currentChannel, [8, 9, 11, 14, 15, 16, 17]) !==-1) {
+      // REGLAGLES BRAVIA FULLSCREEN
+      player.vlc.style.transform = "scaleX(1.45)";
+      player.vlc.style.marginLeft = "-31.5%";
+    } else {
+      player.vlc.style.transform = "scaleX(1)";
+      player.vlc.style.marginLeft = "0%";
     }
   });
 
