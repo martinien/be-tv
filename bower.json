@@ -1,7 +1,7 @@
 {
-  "name": "be-view",
+  "name": "be-tv",
   "version": "0.0.1",
-  "homepage": "https://github.com/blabla4/be-view",
+  "homepage": "https://github.com/blabla4/be-tv",
   "license": "MIT",
   "dependencies": {
       "jquery": "latest",
