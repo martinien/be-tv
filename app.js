@@ -13,9 +13,11 @@ var routes = require('./routes/index');
 var bell = require('./routes/bell');
 var cmd = require('./routes/cmd');
 var alarm = require('./routes/alarm');
+var urbi = require('./routes/urbi');
 var face = require('./routes/face');
 var phone = require('./routes/phone');
 var swipe = require('./routes/swipe');
+
 
 var app = express();
 
@@ -37,9 +39,11 @@ app.use('/', routes);
 app.use('/bell', bell);
 app.use('/alarm', alarm);
 app.use('/cmd', cmd);
+app.use('/notif', notif);
 app.use('/face', face);
 app.use('/call', phone);
 app.use('/swipe', swipe);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

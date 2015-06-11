@@ -33,6 +33,15 @@ define(["tv", "light", "init", "player", "weather", "door"], function(tv, light,
     }, 5000);
   });
 
+  socket.on('urbiNotif', function(data) {
+    init.urbiNotif.html(data);
+    init.urbiNotif.slideDown();
+    setTimeout(function() {
+      init.urbiNotif.slideUp();
+    }, 5000);
+  });
+
+
   socket.on('bellRing', function(data) {
     light.startBlink("46920");
     setTimeout(light.stopBlink("46920"), 8000);
